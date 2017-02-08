@@ -10,6 +10,7 @@ import Foundation
 import JavaScriptCore
 import Crashlytics
 
+import jsengine
 
 class AntiTrackingModule: NSObject {
     
@@ -632,8 +633,8 @@ class AntiTrackingModule: NSObject {
     }
 
 	private func loadWindowTimers() {
-		let w = WTWindowTimers(self.dispatchQueue)
-		w.extend(context)
+//		let w = WTWindowTimers(self.dispatchQueue)
+//		w.extend(context)
 	}
 }
 
