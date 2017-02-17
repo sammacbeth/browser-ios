@@ -586,8 +586,6 @@
 		A91528D21D0E637600CD0425 /* NoImageModeHelper.js in Resources */ = {isa = PBXBuildFile; fileRef = A91528D11D0E637600CD0425 /* NoImageModeHelper.js */; };
 		A93067D91D0FE15E00C49C6E /* NightModeHelper.js in Resources */ = {isa = PBXBuildFile; fileRef = A93067D81D0FE15E00C49C6E /* NightModeHelper.js */; };
 		A93067E81D0FE18E00C49C6E /* NightModeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93067E71D0FE18E00C49C6E /* NightModeHelper.swift */; };
-		B3D0393A1E4B832B007D63D2 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3D039391E4B8202007D63D2 /* libRNFS.a */; };
-		B3EB6FCA1E4B803F00066D52 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3EB6FC71E4B7F5100066D52 /* libReact.a */; };
 		B729F06A1B75CBEF00745F7A /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B729F0691B75CBEF00745F7A /* UserAgent.swift */; };
 		C400467C1CF4E43E00B08303 /* BackForwardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C400467B1CF4E43E00B08303 /* BackForwardListViewController.swift */; };
 		C40046FA1CF8E0B200B08303 /* BackForwardListAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40046F91CF8E0B200B08303 /* BackForwardListAnimator.swift */; };
@@ -1141,27 +1139,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = F84B21BD1A090F8100AAB793;
 			remoteInfo = Client;
-		};
-		B3D039381E4B8202007D63D2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B3D039341E4B8202007D63D2 /* RNFS.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F12AFB9B1ADAF8F800E0535D;
-			remoteInfo = RNFS;
-		};
-		B3EB6FC61E4B7F5100066D52 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B3EB6FC11E4B7F5000066D52 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 83CBBA2E1A601D0E00E9B192;
-			remoteInfo = React;
-		};
-		B3EB6FC81E4B7F5100066D52 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B3EB6FC11E4B7F5000066D52 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2D2A28131D9B038B00D4039D;
-			remoteInfo = "React-tvOS";
 		};
 		D30EBB631C75503800105AE9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -2007,8 +1984,6 @@
 		A91528D11D0E637600CD0425 /* NoImageModeHelper.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = NoImageModeHelper.js; sourceTree = "<group>"; };
 		A93067D81D0FE15E00C49C6E /* NightModeHelper.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = NightModeHelper.js; sourceTree = "<group>"; };
 		A93067E71D0FE18E00C49C6E /* NightModeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NightModeHelper.swift; sourceTree = "<group>"; };
-		B3D039341E4B8202007D63D2 /* RNFS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "Carthage/Checkouts/jsengine/node_modules/react-native/React/../../react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
-		B3EB6FC11E4B7F5000066D52 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "Carthage/Checkouts/jsengine/node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		B729F0691B75CBEF00745F7A /* UserAgent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAgent.swift; path = ../Shared/UserAgent.swift; sourceTree = "<group>"; };
 		C400467B1CF4E43E00B08303 /* BackForwardListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackForwardListViewController.swift; sourceTree = "<group>"; };
 		C40046F91CF8E0B200B08303 /* BackForwardListAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackForwardListAnimator.swift; sourceTree = "<group>"; };
@@ -2349,8 +2324,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3D0393A1E4B832B007D63D2 /* libRNFS.a in Frameworks */,
-				B3EB6FCA1E4B803F00066D52 /* libReact.a in Frameworks */,
 				1E79DD6C1D4FB4BA006BEB4A /* VideoToolbox.framework in Frameworks */,
 				1E79DD6A1D4FB4B7006BEB4A /* SystemConfiguration.framework in Frameworks */,
 				1E79DD681D4FB4AF006BEB4A /* QuartzCore.framework in Frameworks */,
@@ -3933,23 +3906,6 @@
 			path = Animators;
 			sourceTree = "<group>";
 		};
-		B3D039351E4B8202007D63D2 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B3D039391E4B8202007D63D2 /* libRNFS.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		B3EB6FC21E4B7F5000066D52 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B3EB6FC71E4B7F5100066D52 /* libReact.a */,
-				B3EB6FC91E4B7F5100066D52 /* libReact-tvOS.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		D30EBB5B1C75503800105AE9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -4431,8 +4387,6 @@
 				D30EBB5A1C75503800105AE9 /* KIF.xcodeproj */,
 				0B742CC61B32491400EE9264 /* sqlcipher.xcodeproj */,
 				7B9A62B91C4002B1005C83DC /* SQLite.xcodeproj */,
-				B3EB6FC11E4B7F5000066D52 /* React.xcodeproj */,
-				B3D039341E4B8202007D63D2 /* RNFS.xcodeproj */,
 				2FA435FC1ABB83B4008031D1 /* Account */,
 				2FA4360B1ABB83B4008031D1 /* AccountTests */,
 				F84B21C01A090F8100AAB793 /* Client */,
@@ -5320,14 +5274,6 @@
 					ProjectRef = D30EBB5A1C75503800105AE9 /* KIF.xcodeproj */;
 				},
 				{
-					ProductGroup = B3EB6FC21E4B7F5000066D52 /* Products */;
-					ProjectRef = B3EB6FC11E4B7F5000066D52 /* React.xcodeproj */;
-				},
-				{
-					ProductGroup = B3D039351E4B8202007D63D2 /* Products */;
-					ProjectRef = B3D039341E4B8202007D63D2 /* RNFS.xcodeproj */;
-				},
-				{
 					ProductGroup = 0B742CC71B32491400EE9264 /* Products */;
 					ProjectRef = 0B742CC61B32491400EE9264 /* sqlcipher.xcodeproj */;
 				},
@@ -5439,27 +5385,6 @@
 			fileType = wrapper.cfbundle;
 			path = "SQLiteCipher Mac Tests.xctest";
 			remoteRef = 7B9A62E81C4002B1005C83DC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B3D039391E4B8202007D63D2 /* libRNFS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNFS.a;
-			remoteRef = B3D039381E4B8202007D63D2 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B3EB6FC71E4B7F5100066D52 /* libReact.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libReact.a;
-			remoteRef = B3EB6FC61E4B7F5100066D52 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B3EB6FC91E4B7F5100066D52 /* libReact-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libReact-tvOS.a";
-			remoteRef = B3EB6FC81E4B7F5100066D52 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		D30EBB641C75503800105AE9 /* libKIF.a */ = {
@@ -5803,7 +5728,7 @@
 		};
 		7B604F8F1C494AAA006EEEC3 /* Copy Carthage Dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -5820,6 +5745,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/libPhoneNumber.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/CRToast.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/jsengine.framework",
 			);
 			name = "Copy Carthage Dependencies";
 			outputPaths = (
@@ -7791,6 +7717,10 @@
 					"-framework",
 					Lookback,
 					"$(inherited)",
+					"-framework",
+					"\"React\"",
+					"-framework",
+					"\"RNFS\"",
 				);
 				OTHER_SWIFT_FLAGS = "-DMOZ_CHANNEL_NIGHTLY -DCLIQZ";
 				PRODUCT_BUNDLE_IDENTIFIER = cliqz.ios.CliqzBeta;
@@ -7977,6 +7907,10 @@
 					"-framework",
 					Lookback,
 					"$(inherited)",
+					"-framework",
+					"\"React\"",
+					"-framework",
+					"\"RNFS\"",
 				);
 				OTHER_SWIFT_FLAGS = "-DMOZ_CHANNEL_RELEASE -DCLIQZ -DBETA";
 				PRODUCT_BUNDLE_IDENTIFIER = cliqz.ios.CliqzBeta;
@@ -8704,6 +8638,10 @@
 					"-framework",
 					Lookback,
 					"$(inherited)",
+					"-framework",
+					"\"React\"",
+					"-framework",
+					"\"RNFS\"",
 				);
 				OTHER_SWIFT_FLAGS = "-DMOZ_CHANNEL_AURORA -DCLIQZ";
 				PRODUCT_BUNDLE_IDENTIFIER = cliqz.ios.CliqzBeta;
@@ -9201,6 +9139,10 @@
 					"-framework",
 					Lookback,
 					"$(inherited)",
+					"-framework",
+					"\"React\"",
+					"-framework",
+					"\"RNFS\"",
 				);
 				OTHER_SWIFT_FLAGS = "-DMOZ_CHANNEL_BETA -DCLIQZ";
 				PRODUCT_BUNDLE_IDENTIFIER = cliqz.ios.CliqzBeta;
@@ -9638,9 +9580,9 @@
 					"$(PROJECT_DIR)/ThirdParty/PLCrashReporter",
 					"$(PROJECT_DIR)/ThirdParty/Lookback/Safe",
 					"$(PROJECT_DIR)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/React\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/RNFS\"",
 					"$(PROJECT_DIR)/ThirdParty/Lookback/HD",
-					"$(PROJECT_DIR)/Carthage/Checkouts/jsengine/node_modules/react-native/**",
-					"$(PROJECT_DIR)/Carthage/Checkouts/jsengine/node_modules/react-native-fs/**",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9659,6 +9601,10 @@
 					"-framework",
 					Lookback,
 					"$(inherited)",
+					"-framework",
+					"\"React\"",
+					"-framework",
+					"\"RNFS\"",
 				);
 				OTHER_SWIFT_FLAGS = "-DMOZ_CHANNEL_FENNEC -DCLIQZ -DDEBUG -DBETA";
 				PRODUCT_BUNDLE_IDENTIFIER = cliqz.ios.CliqzBeta;

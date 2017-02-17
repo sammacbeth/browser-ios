@@ -8,6 +8,7 @@
 
 import Foundation
 import Shared
+import jsengine
 
 protocol AntitrackingViewDelegate: class {
 
@@ -107,7 +108,7 @@ class AntitrackingViewController: UIViewController, UIGestureRecognizerDelegate 
 		trackersTableView.clipsToBounds = true
 		trackersTableView.allowsSelection = true
 		self.view.addSubview(trackersTableView)
-
+		trackersTableView.hidden = true
 		let title = NSLocalizedString("Help", comment: "Show the SUMO support page from the Support section in the settings")
 		self.helpButton.setTitle(title, forState: .Normal)
 		self.helpButton.setTitleColor(self.textColor(), forState: .Normal)
@@ -122,6 +123,16 @@ class AntitrackingViewController: UIViewController, UIGestureRecognizerDelegate 
 		let tap = UITapGestureRecognizer(target: self, action: #selector(tapRecognizer))
 		tap.cancelsTouchesInView = false
 		self.view.addGestureRecognizer(tap)
+	
+		// Temproary solution for jsengin testing
+		let v = Engine().rootView
+		self.view.addSubview(v)
+		v.snp_makeConstraints { (make) in
+			make.left.right.equalTo(self.view)
+			make.top.equalTo(legendView.snp_bottom)
+			make.bottom.equalTo(self.helpButton.snp_top).offset(-5)
+		}
+
 	}
 
 	override func viewWillLayoutSubviews() {
