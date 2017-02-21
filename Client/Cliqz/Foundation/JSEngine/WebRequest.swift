@@ -58,7 +58,6 @@ public class WebRequest : RCTEventEmitter {
     
     public func getBlockResponseForRequest(requestInfo: [String: AnyObject]) -> NSDictionary? {
         let requestId = requestInfo["id"] as! Int
-        let eventSubmitAt = NSDate()
         
         // event listener not yet ready
         if !self.ready {

@@ -12,12 +12,9 @@ import React
 
 public class Engine {
     
-    //MARK: - Constants
-    let dispatchQueue = dispatch_queue_create("com.cliqz.AntiTracking", DISPATCH_QUEUE_SERIAL)
-    let timersDispatchQueue = dispatch_queue_create("com.cliqz.Timers", DISPATCH_QUEUE_SERIAL)
-    
     //MARK: - Instant variables
     public var webRequest: WebRequest?
+    public let jsbridge: JSBridge
     
     //MARK: - Singleton
     static let sharedInstance = Engine()
@@ -36,7 +33,7 @@ public class Engine {
         rootView = RCTRootView( bundleURL: jsCodeLocation, moduleName: "ExtensionApp", initialProperties: nil, launchOptions: nil )
         bridge = rootView.bridge
         webRequest = bridge.moduleForClass(WebRequest) as? WebRequest
-
+        jsbridge = bridge.moduleForClass(JSBridge) as! JSBridge
     }
     
     //MARK: - Public APIs

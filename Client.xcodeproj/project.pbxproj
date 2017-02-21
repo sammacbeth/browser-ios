@@ -589,6 +589,8 @@
 		B354B5BC1E5C5A06001B38A1 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B354B5BB1E5C5A06001B38A1 /* Engine.swift */; };
 		B354B5BE1E5C5AC8001B38A1 /* WebRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B354B5BD1E5C5AC8001B38A1 /* WebRequest.swift */; };
 		B354B5DE1E5C7096001B38A1 /* WebRequestBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B354B5DD1E5C7096001B38A1 /* WebRequestBridge.m */; };
+		B354B5E01E5C86C5001B38A1 /* JSBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B354B5DF1E5C86C5001B38A1 /* JSBridge.swift */; };
+		B354B5E21E5C931D001B38A1 /* JSBridgeBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B354B5E11E5C931D001B38A1 /* JSBridgeBridge.m */; };
 		B729F06A1B75CBEF00745F7A /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B729F0691B75CBEF00745F7A /* UserAgent.swift */; };
 		C400467C1CF4E43E00B08303 /* BackForwardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C400467B1CF4E43E00B08303 /* BackForwardListViewController.swift */; };
 		C40046FA1CF8E0B200B08303 /* BackForwardListAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40046F91CF8E0B200B08303 /* BackForwardListAnimator.swift */; };
@@ -1381,13 +1383,13 @@
 		1E01FD1D1DDB148E00570663 /* Gotham-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Book.otf"; sourceTree = "<group>"; };
 		1E07DF751DCB72B200CC6BF0 /* HistorySwiper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistorySwiper.swift; sourceTree = "<group>"; };
 		1E0E9DD91D75D4C300D01346 /* SettingsActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsActivity.swift; sourceTree = "<group>"; };
-		1E1432311D88539A001C27C9 /* BlockedRequestsCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockedRequestsCache.swift; sourceTree = "<group>"; };
+		1E1432311D88539A001C27C9 /* BlockedRequestsCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockedRequestsCache.swift; path = AntiTracking/BlockedRequestsCache.swift; sourceTree = "<group>"; };
 		1E1864FA1D5B14FF0079B2CE /* WebViewScripting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewScripting.swift; sourceTree = "<group>"; };
 		1E18650E1D5B2B360079B2CE /* LegacyJSContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LegacyJSContext.h; sourceTree = "<group>"; };
 		1E18650F1D5B2B580079B2CE /* LegacyJSContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LegacyJSContext.m; sourceTree = "<group>"; };
 		1E1CB9A21DD46C050098D980 /* FeedbackUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackUI.swift; sourceTree = "<group>"; };
 		1E705C381D5E052D009FAEE1 /* AntiTrackingModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AntiTrackingModule.swift; sourceTree = "<group>"; };
-		1E705C3A1D5E059E009FAEE1 /* InterceptorURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterceptorURLProtocol.swift; sourceTree = "<group>"; };
+		1E705C3A1D5E059E009FAEE1 /* InterceptorURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InterceptorURLProtocol.swift; path = AntiTracking/InterceptorURLProtocol.swift; sourceTree = "<group>"; };
 		1E79DC941D4FB2B3006BEB4A /* Extension */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Extension; sourceTree = "<group>"; };
 		1E79DC9B1D4FB2C5006BEB4A /* CustomPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPageControl.swift; sourceTree = "<group>"; };
 		1E79DC9D1D4FB2C5006BEB4A /* AtomicInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomicInt.swift; sourceTree = "<group>"; };
@@ -1676,7 +1678,7 @@
 		1EB293F01DB7D08F00D852C8 /* ElementAtPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementAtPoint.swift; sourceTree = "<group>"; };
 		1EB293F21DB7D0E100D852C8 /* ElementAtPoint.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ElementAtPoint.js; sourceTree = "<group>"; };
 		1EBC01431DD4786D000912B9 /* CRToast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CRToast.framework; path = Carthage/Build/iOS/CRToast.framework; sourceTree = "<group>"; };
-		1ECAE2B81D9D5A1C00CB8102 /* ContentPolicyDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentPolicyDetector.swift; sourceTree = "<group>"; };
+		1ECAE2B81D9D5A1C00CB8102 /* ContentPolicyDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentPolicyDetector.swift; path = AntiTracking/ContentPolicyDetector.swift; sourceTree = "<group>"; };
 		1ECAE3311DA4EE5800CB8102 /* ES5CompatTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ES5CompatTest.swift; sourceTree = "<group>"; };
 		1ECAE3321DA4EE5800CB8102 /* ES6CompatTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ES6CompatTest.swift; sourceTree = "<group>"; };
 		1ECAE3331DA4EE5800CB8102 /* ESCompatTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESCompatTest.swift; sourceTree = "<group>"; };
@@ -1990,6 +1992,8 @@
 		B354B5BB1E5C5A06001B38A1 /* Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Engine.swift; path = JSEngine/Engine.swift; sourceTree = "<group>"; };
 		B354B5BD1E5C5AC8001B38A1 /* WebRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebRequest.swift; path = JSEngine/WebRequest.swift; sourceTree = "<group>"; };
 		B354B5DD1E5C7096001B38A1 /* WebRequestBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebRequestBridge.m; path = JSEngine/WebRequestBridge.m; sourceTree = "<group>"; };
+		B354B5DF1E5C86C5001B38A1 /* JSBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSBridge.swift; path = JSEngine/JSBridge.swift; sourceTree = "<group>"; };
+		B354B5E11E5C931D001B38A1 /* JSBridgeBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSBridgeBridge.m; path = JSEngine/JSBridgeBridge.m; sourceTree = "<group>"; };
 		B729F0691B75CBEF00745F7A /* UserAgent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAgent.swift; path = ../Shared/UserAgent.swift; sourceTree = "<group>"; };
 		C400467B1CF4E43E00B08303 /* BackForwardListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackForwardListViewController.swift; sourceTree = "<group>"; };
 		C40046F91CF8E0B200B08303 /* BackForwardListAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackForwardListAnimator.swift; sourceTree = "<group>"; };
@@ -2557,9 +2561,6 @@
 			isa = PBXGroup;
 			children = (
 				1E705C381D5E052D009FAEE1 /* AntiTrackingModule.swift */,
-				1E705C3A1D5E059E009FAEE1 /* InterceptorURLProtocol.swift */,
-				1E1432311D88539A001C27C9 /* BlockedRequestsCache.swift */,
-				1ECAE2B81D9D5A1C00CB8102 /* ContentPolicyDetector.swift */,
 			);
 			path = AntiTracking;
 			sourceTree = "<group>";
@@ -3919,6 +3920,11 @@
 				B354B5BB1E5C5A06001B38A1 /* Engine.swift */,
 				B354B5BD1E5C5AC8001B38A1 /* WebRequest.swift */,
 				B354B5DD1E5C7096001B38A1 /* WebRequestBridge.m */,
+				1E1432311D88539A001C27C9 /* BlockedRequestsCache.swift */,
+				1ECAE2B81D9D5A1C00CB8102 /* ContentPolicyDetector.swift */,
+				1E705C3A1D5E059E009FAEE1 /* InterceptorURLProtocol.swift */,
+				B354B5DF1E5C86C5001B38A1 /* JSBridge.swift */,
+				B354B5E11E5C931D001B38A1 /* JSBridgeBridge.m */,
 			);
 			name = JSEngine;
 			sourceTree = "<group>";
@@ -6251,6 +6257,7 @@
 				3BCE6D3C1CEB9E4D0080928C /* ThirdPartySearchAlerts.swift in Sources */,
 				1E79DEA21D508368006BEB4A /* AWSSTSService.m in Sources */,
 				745DAB301CDAAFAA00D44181 /* RecentlyClosedTabsPanel.swift in Sources */,
+				B354B5E21E5C931D001B38A1 /* JSBridgeBridge.m in Sources */,
 				1E79DD101D4FB2C5006BEB4A /* EventsLogger.swift in Sources */,
 				1E79DE771D508368006BEB4A /* AWSSignature.m in Sources */,
 				1E79DD1B1D4FB2C5006BEB4A /* XMLHttpRequest.swift in Sources */,
@@ -6443,6 +6450,7 @@
 				39AC591A1CC574AB0042C2F5 /* HomePageSettingsViewController.swift in Sources */,
 				1E79DE7E1D508368006BEB4A /* AWSTaskCompletionSource.m in Sources */,
 				7B59FC3E1C68E9B600F58EF5 /* SWCellScrollView.m in Sources */,
+				B354B5E01E5C86C5001B38A1 /* JSBridge.swift in Sources */,
 				1E79DE981D508368006BEB4A /* AWSReachability.m in Sources */,
 				1E79DE8D1D508368006BEB4A /* AWSMTLValueTransformer.m in Sources */,
 				B354B5BE1E5C5AC8001B38A1 /* WebRequest.swift in Sources */,
