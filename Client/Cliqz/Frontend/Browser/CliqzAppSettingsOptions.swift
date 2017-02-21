@@ -96,8 +96,8 @@ class TestReact: Setting {
         let viewController = UIViewController()
         viewController.view = Engine.sharedInstance.rootView
 
-        navigationController?.presentViewController(viewController, animated: true, completion: nil)
-//        navigationController?.pushViewController(viewController, animated: true)
+//        navigationController?.presentViewController(viewController, animated: true, completion: nil)
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
