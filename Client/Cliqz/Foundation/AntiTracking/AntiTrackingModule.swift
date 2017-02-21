@@ -10,8 +10,6 @@ import Foundation
 import JavaScriptCore
 import Crashlytics
 
-import jsengine
-
 class AntiTrackingModule: NSObject {
     
     //MARK: Constants
@@ -595,8 +593,8 @@ class AntiTrackingModule: NSObject {
         requestInfo["isPrivate"] = isPrivate
         requestInfo["originUrl"] = originUrl
 
-        let contentPolicyType = ContentPolicyDetector.getContentPolicy(request, isMainDocument: isMainDocument)
-        requestInfo["type"] = contentPolicyType;
+//        let contentPolicyType = ContentPolicyDetector.getContentPolicy(request, isMainDocument: isMainDocument)
+//        requestInfo["type"] = contentPolicyType;
 
         requestInfo["requestHeaders"] = request.allHTTPHeaderFields
         return requestInfo

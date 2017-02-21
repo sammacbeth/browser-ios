@@ -94,15 +94,10 @@ class TestReact: Setting {
     
     override func onClick(navigationController: UINavigationController?) {
         let viewController = UIViewController()
-        let jsCodeLocation = NSURL(string: "http://localhost:8081/index.ios.bundle?platform=ios")
-        //        let jsCodeLocation = NSBundle.mainBundle().URLForResource("main", withExtension: "jsbundle", subdirectory: "Extension")
-        let rootView = RCTRootView( bundleURL: jsCodeLocation, moduleName: "ExtensionApp", initialProperties: nil, launchOptions: nil )
-        viewController.view = rootView
+        viewController.view = Engine.sharedInstance.rootView
 
-//        viewController.profile = self.profile
         navigationController?.presentViewController(viewController, animated: true, completion: nil)
 //        navigationController?.pushViewController(viewController, animated: true)
-        // log Telemerty signal
     }
 }
 
