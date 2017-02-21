@@ -25,7 +25,7 @@ class InterceptorURLProtocol: NSURLProtocol {
             return false
         }
         
-        return AntiTrackingModule.sharedInstance.shouldBlockRequest(request)
+        return (Engine.sharedInstance.webRequest?.shouldBlockRequest(request))!
     }
     
     override class func canonicalRequestForRequest(request: NSURLRequest) -> NSURLRequest {

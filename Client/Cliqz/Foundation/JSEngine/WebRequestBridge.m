@@ -12,5 +12,6 @@
 
 RCT_EXTERN_METHOD(isWindowActive:(nonnull NSNumber *)tabId resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject)
 RCT_EXTERN_METHOD(blockingResponseReply:(nonnull NSNumber *)requestId response:(NSDictionary)response)
+RCT_EXTERN_METHOD(onReady)
 
 @end

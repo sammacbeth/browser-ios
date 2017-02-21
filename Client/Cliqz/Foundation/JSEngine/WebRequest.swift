@@ -12,11 +12,11 @@ import React
 @objc(WebRequest)
 public class WebRequest : RCTEventEmitter {
     
-    weak var jsContext: JSContext? = nil
     var tabs = NSMapTable.strongToWeakObjectsMapTable()
     var requestSerial = 0
     var blockingResponses = [Int: NSDictionary]()
     var lockSemaphore: dispatch_semaphore_t = dispatch_semaphore_create(0)
+    var ready = false
     
     public override init() {
         super.init()
@@ -59,21 +59,34 @@ public class WebRequest : RCTEventEmitter {
     public func getBlockResponseForRequest(requestInfo: [String: AnyObject]) -> NSDictionary? {
         let requestId = requestInfo["id"] as! Int
         let eventSubmitAt = NSDate()
+        
+        // event listener not yet ready
+        if !self.ready {
+            return NSDictionary()
+        }
+        
         self.sendEventWithName("webRequest", body: requestInfo)
         
-        while self.blockingResponses[requestId] == nil && eventSubmitAt.timeIntervalSinceNow < 0.2 {
+        while self.blockingResponses[requestId] == nil {
             dispatch_semaphore_wait(lockSemaphore, dispatch_time(DISPATCH_TIME_NOW, 100 * 1000 * 1000))
         }
         
         let response = self.blockingResponses[requestId]
         self.blockingResponses[requestId] = nil;
         return response
+
+        
     }
     
     @objc(blockingResponseReply:response:)
     func blockingResponseReply(requestId: NSNumber, response: NSDictionary) {
         self.blockingResponses[requestId as Int] = response
         dispatch_semaphore_signal(lockSemaphore)
+    }
+    
+    @objc(onReady)
+    func onReady() {
+        self.ready = true
     }
     
     private func getRequestInfo(request: NSURLRequest) -> [String: AnyObject] {
