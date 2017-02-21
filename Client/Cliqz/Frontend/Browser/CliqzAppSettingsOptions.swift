@@ -10,6 +10,7 @@ import Foundation
 import MessageUI
 import Shared
 
+import React
 
 //Cliqz: Added to modify the behavior of changing default search engine 
 class CliqzSearchSetting: SearchSetting, SearchEnginePickerDelegate {
@@ -77,6 +78,34 @@ class HumanWebSetting: Setting {
         TelemetryLogger.sharedInstance.logEvent(humanWebSingal)
     }
 }
+
+class TestReact: Setting {
+    
+    let profile: Profile
+    
+    init(settings: SettingsTableViewController) {
+        self.profile = settings.profile
+        
+        let humanWebTitle = "Test React"
+        super.init(title: NSAttributedString(string: humanWebTitle, attributes: [NSForegroundColorAttributeName: UIConstants.TableViewRowTextColor]))
+    }
+    
+    override var accessoryType: UITableViewCellAccessoryType { return .DisclosureIndicator }
+    
+    override func onClick(navigationController: UINavigationController?) {
+        let viewController = UIViewController()
+        let jsCodeLocation = NSURL(string: "http://localhost:8081/index.ios.bundle?platform=ios")
+        //        let jsCodeLocation = NSBundle.mainBundle().URLForResource("main", withExtension: "jsbundle", subdirectory: "Extension")
+        let rootView = RCTRootView( bundleURL: jsCodeLocation, moduleName: "ExtensionApp", initialProperties: nil, launchOptions: nil )
+        viewController.view = rootView
+
+//        viewController.profile = self.profile
+        navigationController?.presentViewController(viewController, animated: true, completion: nil)
+//        navigationController?.pushViewController(viewController, animated: true)
+        // log Telemerty signal
+    }
+}
+
 //Cliqz: Added new settings item for Ad Blocker
 class AdBlockerSetting: Setting {
     
