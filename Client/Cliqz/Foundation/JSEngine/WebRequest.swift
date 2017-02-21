@@ -31,9 +31,10 @@ public class WebRequest : RCTEventEmitter {
     }
     
     func shouldBlockRequest(request: NSURLRequest) -> Bool {
-        
+
         let requestInfo = getRequestInfo(request)
-        if let blockResponse = getBlockResponseForRequest(requestInfo) where blockResponse.count > 0 {
+        let response = Engine.sharedInstance.jsbridge.callAction("webRequest", args: [requestInfo])
+        if let blockResponse = response["response"] where blockResponse.count > 0 {
             return true
         }
         
@@ -54,38 +55,6 @@ public class WebRequest : RCTEventEmitter {
     //MARK: - Private Methods
     private func isTabActive(tabId: Int) -> Bool {
         return tabs.objectForKey(tabId) != nil
-    }
-    
-    public func getBlockResponseForRequest(requestInfo: [String: AnyObject]) -> NSDictionary? {
-        let requestId = requestInfo["id"] as! Int
-        
-        // event listener not yet ready
-        if !self.ready {
-            return NSDictionary()
-        }
-        
-        self.sendEventWithName("webRequest", body: requestInfo)
-        
-        while self.blockingResponses[requestId] == nil {
-            dispatch_semaphore_wait(lockSemaphore, dispatch_time(DISPATCH_TIME_NOW, 100 * 1000 * 1000))
-        }
-        
-        let response = self.blockingResponses[requestId]
-        self.blockingResponses[requestId] = nil;
-        return response
-
-        
-    }
-    
-    @objc(blockingResponseReply:response:)
-    func blockingResponseReply(requestId: NSNumber, response: NSDictionary) {
-        self.blockingResponses[requestId as Int] = response
-        dispatch_semaphore_signal(lockSemaphore)
-    }
-    
-    @objc(onReady)
-    func onReady() {
-        self.ready = true
     }
     
     private func getRequestInfo(request: NSURLRequest) -> [String: AnyObject] {

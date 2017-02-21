@@ -13,8 +13,8 @@ import React
 public class JSBridge : RCTEventEmitter {
 
     var registeredActions: Set<String> = []
-    var actionCounter: Int = 0
-    var replyCache = [Int: NSDictionary]()
+    var actionCounter: NSInteger = 0
+    var replyCache = [NSInteger: NSDictionary]()
     let lockSemaphore: dispatch_semaphore_t = dispatch_semaphore_create(0)
     
     public override init() {
@@ -36,6 +36,7 @@ public class JSBridge : RCTEventEmitter {
             return ["error": "function not registered"]
         }
         
+        // create unique id
         actionCounter += 1
         let actionId = actionCounter
         
@@ -53,7 +54,7 @@ public class JSBridge : RCTEventEmitter {
     }
     
     @objc(replyToAction:response:)
-    func replyToAction(actionId: Int, response: NSDictionary) {
+    func replyToAction(actionId: NSInteger, response: NSDictionary) {
         self.replyCache[actionId] = response
         dispatch_semaphore_signal(self.lockSemaphore)
     }
