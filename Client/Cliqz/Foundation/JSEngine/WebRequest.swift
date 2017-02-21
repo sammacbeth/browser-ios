@@ -112,6 +112,7 @@ public class WebRequest : RCTEventEmitter {
         requestInfo["originUrl"] = originUrl
         let contentPolicyType = ContentPolicyDetector.sharedInstance.getContentPolicy(request, isMainDocument: isMainDocument)
         requestInfo["type"] = contentPolicyType;
+        requestInfo["source"] = originUrl;
         
         requestInfo["requestHeaders"] = request.allHTTPHeaderFields
         return requestInfo
