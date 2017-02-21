@@ -124,13 +124,13 @@ class AntitrackingViewController: UIViewController, UIGestureRecognizerDelegate 
 		self.view.addGestureRecognizer(tap)
 	
 		// Temproary solution for jsengin testing
-		let v = Engine().rootView
-		self.view.addSubview(v)
-		v.snp_makeConstraints { (make) in
-			make.left.right.equalTo(self.view)
-			make.top.equalTo(legendView.snp_bottom)
-			make.bottom.equalTo(self.helpButton.snp_top).offset(-5)
-		}
+//		let v = Engine().rootView
+//		self.view.addSubview(v)
+//		v.snp_makeConstraints { (make) in
+//			make.left.right.equalTo(self.view)
+//			make.top.equalTo(legendView.snp_bottom)
+//			make.bottom.equalTo(self.helpButton.snp_top).offset(-5)
+//		}
 
 	}
 

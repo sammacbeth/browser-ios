@@ -202,8 +202,14 @@ class AntiTrackingModule: NSObject {
     }
     
     private func getTabBlockingInfo(webViewId: Int) -> [NSObject : AnyObject]! {
-        let tabBlockInfo = self.context?.evaluateScript("System.get('antitracking/attrack').default.getTabBlockingInfo(\(webViewId));").toDictionary()
-        return tabBlockInfo
+//        let tabBlockInfo = self.context?.evaluateScript("System.get('antitracking/attrack').default.getTabBlockingInfo(\(webViewId));").toDictionary()
+        let response = Engine.sharedInstance.jsbridge.callAction("getTabBlockingInfo", args: [webViewId])
+        print(response)
+        if let result = response["results"] {
+            return result as! Dictionary<NSObject, AnyObject>
+        } else {
+            return [:]
+        }
     }
     
     private func getCompanyBadRequestsCount(trackers: [String], allTrackers: [String: AnyObject]) -> Int {
