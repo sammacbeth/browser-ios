@@ -86755,7 +86755,7 @@ var ONE_MINUTE=60*ONE_SECOND;
 var ONE_HOUR=60*ONE_MINUTE;
 
 
-var BASE_URL='https://cdn.cliqz.com/adblocking/latest-filters/';
+var BASE_URL='https://s3.amazonaws.com/cdn.cliqz.com/adblocking/mobile-test/';
 
 var LANGS=_coreLanguage2['default'].state();
 var EOL='\n';
@@ -86775,7 +86775,7 @@ var FILTER_BOWER_PREFIX="adb_";
 
 function getBowerUrl(assetName){
 var bowerName=FILTER_BOWER_PREFIX+assetName.replace(/\//g,'_').replace(/\./g,'-');
-return'chrome://cliqz/content/bower_components/'+bowerName+'/index.txt';
+return'chrome://cliqz/content/adblocker/mobile/'+assetName;
 }
 
 var FiltersList=function(){
@@ -86872,7 +86872,7 @@ this.lists=new Map();
 _createClass(_default,[{
 key:'remoteURL',
 value:function remoteURL(){
-return'https://cdn.cliqz.com/adblocking/'+_corePlatform.platformName+'/allowed-lists.json?t='+parseInt(Date.now()/60/60/1000,10);
+return'https://s3.amazonaws.com/cdn.cliqz.com/adblocking/mobile-test/allowed-lists.json?t='+parseInt(Date.now()/60/60/1000,10);
 }},
 {
 key:'stop',
