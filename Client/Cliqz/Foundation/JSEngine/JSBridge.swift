@@ -14,8 +14,8 @@ public class JSBridge : RCTEventEmitter {
 
     var registeredActions: Set<String> = []
     var actionCounter: NSInteger = 0
-    var replyCache = [NSInteger: NSDictionary]()
-    let lockSemaphore: dispatch_semaphore_t = dispatch_semaphore_create(0)
+    var replyCache = [NSInteger: [String: NSObject]]()
+    var eventSemaphores = [NSInteger: dispatch_semaphore_t]()
     
     public override init() {
         super.init()
@@ -29,8 +29,7 @@ public class JSBridge : RCTEventEmitter {
         return ["callAction"]
     }
     
-    
-    public func callAction(functionName: String, args: AnyObject) -> NSDictionary {
+    public func callAction(functionName: String, args: AnyObject) -> [String: NSObject] {
         // check listener is registered on other end
         guard self.registeredActions.contains(functionName) else {
             return ["error": "function not registered"]
@@ -43,20 +42,31 @@ public class JSBridge : RCTEventEmitter {
         // dispatch event
         self.sendEventWithName("callAction", body: ["id": actionId, "action": functionName, "args": args])
         
-        // wait for response
-        while self.replyCache[actionId] == nil {
-            dispatch_semaphore_wait(self.lockSemaphore, DISPATCH_TIME_FOREVER)
-        }
+        // create a semaphore and wait for it
+        let sem = dispatch_semaphore_create(0)
+        self.eventSemaphores[actionId] = sem
+        dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER)
+
+        // after signal the reply should be ready in the cache
+        let reply = self.replyCache[actionId]!
         
-        let reply = self.replyCache[actionId]
+        // clear semaphore and reply cache
         self.replyCache[actionId] = nil
-        return reply!
+        self.eventSemaphores[actionId] = nil
+        
+        return reply
     }
     
-    @objc(replyToAction:response:)
-    func replyToAction(actionId: NSInteger, response: NSDictionary) {
-        self.replyCache[actionId] = response
-        dispatch_semaphore_signal(self.lockSemaphore)
+    @objc(replyToAction:response:error:)
+    func replyToAction(actionId: NSInteger, response: NSDictionary, error: String) {
+        // lookup the semaphore for this action
+        if let sem = self.eventSemaphores[actionId] {
+            // place response in cache and signal on this semaphore
+            self.replyCache[actionId] = ["result": response, "error": error]
+            dispatch_semaphore_signal(sem)
+        } else {
+            print("disgarding action reply \(actionId)")
+        }
     }
     
     @objc(registerAction:)
