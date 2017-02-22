@@ -39,15 +39,12 @@ class AntiTrackingModule: NSObject {
     
     override init() {
         super.init()
-		dispatch_async(dispatchQueue) {
-			self.context = JSContext()
-		}
     }
     
     //MARK: - Public APIs
     func initModule() {
         // Register interceptor url protocol
-        NSURLProtocol.registerClass(InterceptorURLProtocol)
+//        NSURLProtocol.registerClass(InterceptorURLProtocol)
         
         dispatch_async(dispatchQueue) {
 #if DEBUG
@@ -62,18 +59,17 @@ class AntiTrackingModule: NSObject {
         guard BlockedRequestsCache.sharedInstance.hasRequest(request) == false else {
             return true
         }
-        let requestInfo = getRequestInfo(request)
-        if let blockResponse = getBlockResponseForRequest(requestInfo) where blockResponse.count > 0 {
+        if let blockResponse = Engine.sharedInstance.webRequest?.shouldBlockRequest(request) where blockResponse == true {
             
             // update unsafe requests count for the webivew that issued this request
-            if let tabId = requestInfo["tabId"] as? Int,
-                let webView = WebViewToUAMapper.idToWebView(tabId) {
-                if let tabBlockInfo = getTabBlockingInfo(tabId),
-                    let requests = tabBlockInfo["requests"] as? [String : AnyObject],
-                    let unsafeRequestsCount = requests["unsafe"] as? Int {
-                        webView.updateUnsafeRequestsCount(unsafeRequestsCount)
-                    }
-            }
+//            if let tabId = requestInfo["tabId"] as? Int,
+//                let webView = WebViewToUAMapper.idToWebView(tabId) {
+//                if let tabBlockInfo = getTabBlockingInfo(tabId),
+//                    let requests = tabBlockInfo["requests"] as? [String : AnyObject],
+//                    let unsafeRequestsCount = requests["unsafe"] as? Int {
+//                        webView.updateUnsafeRequestsCount(unsafeRequestsCount)
+//                    }
+//            }
             
             BlockedRequestsCache.sharedInstance.addBlockedRequest(request)
             
