@@ -107,7 +107,7 @@ class AntitrackingViewController: UIViewController, UIGestureRecognizerDelegate 
 		trackersTableView.clipsToBounds = true
 		trackersTableView.allowsSelection = true
 		self.view.addSubview(trackersTableView)
-		trackersTableView.hidden = true
+        
 		let title = NSLocalizedString("Help", comment: "Show the SUMO support page from the Support section in the settings")
 		self.helpButton.setTitle(title, forState: .Normal)
 		self.helpButton.setTitleColor(self.textColor(), forState: .Normal)
