@@ -72883,6 +72883,8 @@ app=new _app2['default']();
 return app.load();
 }).then(function(){
 _nativeBridge2['default'].registerAction('getTrackerListForTab',_antitrackingAttrack2['default'].getTrackerListForTab);
+_nativeBridge2['default'].registerAction('getPref',_prefs.getPref);
+_nativeBridge2['default'].registerAction('setPref',_prefs.setPref);
 return Promise.resolve(app);
 });
 
@@ -76545,7 +76547,7 @@ isTrackerTxtEnabled:function isTrackerTxtEnabled(){
 return CliqzUtils.getPref('trackerTxt',false);
 },
 isBloomFilterEnabled:function isBloomFilterEnabled(){
-return CliqzUtils.getPref('attrackBloomFilter',false);
+return CliqzUtils.getPref('attrackBloomFilter',true);
 },
 isForceBlockEnabled:function isForceBlockEnabled(){
 return true;

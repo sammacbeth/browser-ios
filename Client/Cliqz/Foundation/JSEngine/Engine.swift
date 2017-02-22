@@ -50,11 +50,12 @@ public class Engine {
     }
     
     func setPref(prefName: String, prefValue: Any) {
-        //        self.jsengine?.evaluateScript("")
+        self.jsbridge.callAction("setPref", args: [prefName, prefValue as! NSObject])
     }
     
-    func getPref(prefName: String) {
-        //        self.jsengine?.evaluateScript("")
+    func getPref(prefName: String) -> Any {
+        let result = self.jsbridge.callAction("getPref", args: [prefName])
+        return result["result"]
     }
     
     public func parseJSON(dictionary: [String: AnyObject]) -> String {
