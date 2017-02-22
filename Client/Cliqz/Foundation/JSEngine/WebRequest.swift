@@ -34,6 +34,14 @@ public class WebRequest : RCTEventEmitter {
     func shouldBlockRequest(request: NSURLRequest) -> Bool {
 
         let requestInfo = getRequestInfo(request)
+        
+        // reset counter for main document
+        if request.URL == request.mainDocumentURL {
+            if let tabId = requestInfo["tabId"] as? Int, let webView = WebViewToUAMapper.idToWebView(tabId) {
+                webView.updateUnsafeRequestsCount(0)
+            }
+        }
+        
         let response = Engine.sharedInstance.jsbridge.callAction("webRequest", args: [requestInfo])
         if let blockResponse = response["result"] as? NSDictionary where blockResponse.count > 0 {
             print("xxxxx -> block \(request.URLString)")
