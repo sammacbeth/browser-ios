@@ -83590,7 +83590,9 @@ var _antitrackingWebrequestContext=require(622 /* ../antitracking/webrequest-con
 
 var _antitrackingWebrequestContext2=_interopRequireDefault(_antitrackingWebrequestContext);
 
-var _adblockerUtils=require(633 /* ../adblocker/utils */);
+var _utils=require(633 /* ./utils */);
+
+var _utils2=_interopRequireDefault(_utils);
 
 var _adblockerFiltersEngine=require(634 /* ../adblocker/filters-engine */);
 
@@ -83619,6 +83621,8 @@ var ADB_VERSION=2;
 
 exports.ADB_VERSION=ADB_VERSION;
 
+var ADB_DISK_CACHE='cliqz-adb-disk-cache';
+exports.ADB_DISK_CACHE=ADB_DISK_CACHE;
 var ADB_PREF='cliqz-adb';
 exports.ADB_PREF=ADB_PREF;
 var ADB_PREF_OPTIMIZED='cliqz-adb-optimized';
@@ -83667,11 +83671,12 @@ return(0,_antitrackingDomain.getGeneralDomain)(hostname);
 
 
 var AdBlocker=function(){
-function AdBlocker(){
+function AdBlocker(onDiskCache){
 var _this=this;
 
 _classCallCheck(this,AdBlocker);
 
+this.onDiskCache=onDiskCache;
 this.logs=[];
 this.engine=new _adblockerFiltersEngine2['default']();
 
@@ -83725,7 +83730,7 @@ _this.log('Engine updated with '+resourcesLists.length+' resources'+(' ('+(Date.
 _this.initCache();
 
 
-if(CliqzADB.onDiskCache){
+if(_this.onDiskCache){
 if(_this.engine.updated){
 (function(){
 var t0=Date.now();
@@ -83734,7 +83739,7 @@ var totalTime=Date.now()-t0;
 _this.log('Serialized filters engine on disk ('+totalTime+' ms)');
 _this.engine.updated=false;
 })['catch'](function(e){
-CliqzUtils.log('Failed to serialize filters engine on disk '+e,'adblocker');
+_this.log('Failed to serialize filters engine on disk '+e);
 });
 })();
 }else{
@@ -83746,9 +83751,6 @@ _this.log('Engine has not been updated, do not serialize');
 
 this.blacklist=new Set();
 this.blacklistPersist=new _antitrackingPersistentState.LazyPersistentObject('adb-blacklist');
-
-
-this.initialized=false;
 }
 
 _createClass(AdBlocker,[{
@@ -83757,7 +83759,7 @@ value:function log(msg){
 var date=new Date();
 var message=date.getHours()+':'+date.getMinutes()+' '+msg;
 this.logs.push(message);
-CliqzUtils.log(msg,'adblocker');
+(0,_utils2['default'])(msg,'adblocker');
 }},
 {
 key:'initCache',
@@ -83780,7 +83782,7 @@ key:'loadEngineFromDisk',
 value:function loadEngineFromDisk(){
 var _this2=this;
 
-if(CliqzADB.onDiskCache){
+if(this.onDiskCache){
 return new _coreResourceLoader.Resource(SERIALIZED_ENGINE_PATH).load().then(function(serializedEngine){
 if(serializedEngine!==undefined){
 try{
@@ -83813,28 +83815,27 @@ var _this3=this;
 
 this.initCache();
 
-
-this.loadEngineFromDisk().then(function(){
-return _this3.listsManager.load();
-}).then(function(){
-
-_this3.log('Check for updates');
-setTimeout(function(){
-return _this3.listsManager.update();
-},30*1000);
-});
-
-this.blacklistPersist.load().then(function(value){
+return this.blacklistPersist.load().then(function(value){
 
 if(value.urls!==undefined){
 _this3.blacklist=new Set(value.urls);
 }
+}).then(function(){
+return _this3.loadEngineFromDisk();
+}).then(function(){
+return _this3.listsManager.load();
+}).then(function(){
+
+_this3.log('Check for updates');
+_this3.loadingTimer=_coreCliqz.utils.setTimeout(function(){
+return _this3.listsManager.update();
+},30*1000);
 });
-this.initialized=true;
 }},
 {
 key:'unload',
 value:function unload(){
+_coreCliqz.utils.clearTimeout(this.loadingTimer);
 this.listsManager.stop();
 }},
 {
@@ -83857,7 +83858,7 @@ this.persistBlacklist();
 {
 key:'isInBlacklist',
 value:function isInBlacklist(request){
-return this.blacklist.has(request.sourceURL)||this.blacklist.has(request.sourceGD);
+return this.isUrlInBlacklist(request.sourceURL)||this.blacklist.has(request.sourceGD);
 }},
 {
 key:'isDomainInBlacklist',
@@ -83876,7 +83877,8 @@ return this.blacklist.has(hostname);
 {
 key:'isUrlInBlacklist',
 value:function isUrlInBlacklist(url){
-return this.blacklist.has(url);
+var processedURL=_coreCliqz.utils.cleanUrlProtocol(url,true);
+return this.blacklist.has(processedURL);
 }},
 {
 key:'logActionHW',
@@ -83928,11 +83930,6 @@ this.persistBlacklist();
 {
 key:'match',
 value:function match(httpContext){
-
-if(!this.initialized){
-return false;
-}
-
 if(httpContext.isFullPage()){
 
 return false;
@@ -83980,7 +83977,7 @@ var t0=Date.now();
 var isAd=this.isInBlacklist(request)?{match:false}:this.cache.get(request);
 var totalTime=Date.now()-t0;
 
-(0,_adblockerUtils.log)('BLOCK AD '+JSON.stringify({
+(0,_utils2['default'])('BLOCK AD '+JSON.stringify({
 timeAdFilter:totalTime,
 isAdFilter:isAd,
 context:{
@@ -83999,7 +83996,7 @@ return AdBlocker;
 }();
 
 var CliqzADB={
-onDiskCache:_coreCliqz.utils.getPref(ADB_ONDISKCACHE_PREF,true),
+onDiskCache:CliqzUtils.getPref(ADB_DISK_CACHE,true),
 adblockInitialized:false,
 adbMem:{},
 adbStats:new _adblockerAdbStats2['default'](),
@@ -84014,25 +84011,27 @@ if(CliqzUtils.getPref(ADB_PREF,undefined)===undefined){
 CliqzUtils.setPref(ADB_PREF,ADB_PREF_VALUES.Disabled);
 }
 
-CliqzADB.adBlocker=new AdBlocker();
+CliqzADB.adBlocker=new AdBlocker(CliqzADB.onDiskCache);
 
 var initAdBlocker=function initAdBlocker(){
-CliqzADB.adBlocker.init();
+return CliqzADB.adBlocker.init().then(function(){
 CliqzADB.adblockInitialized=true;
 CliqzADB.initPacemaker();
 _coreWebrequest2['default'].onBeforeRequest.addListener(CliqzADB.httpopenObserver.observe,undefined,['blocking']);
+});
 };
 
 if(adbEnabled()){
-initAdBlocker();
-}else{
+return initAdBlocker();
+}
+
 this.onPrefChangeEvent=_coreCliqz.events.subscribe('prefchange',function(pref){
 if((pref===ADB_PREF||pref===ADB_ABTEST_PREF)&&!CliqzADB.adblockInitialized&&adbEnabled()){
 
 initAdBlocker();
 }
 });
-}
+return Promise.resolve();
 },
 
 unload:function unload(){
@@ -84043,13 +84042,8 @@ if(this.onPrefChangeEvent){
 this.onPrefChangeEvent.unsubscribe();
 }
 CliqzADB.unloadPacemaker();
-browser.forEachWindow(CliqzADB.unloadWindow);
 _coreWebrequest2['default'].onBeforeRequest.removeListener(CliqzADB.httpopenObserver.observe);
 },
-
-initWindow:function initWindow(){},
-
-unloadWindow:function unloadWindow(){},
 
 initPacemaker:function initPacemaker(){
 var t1=_coreCliqz.utils.setInterval(function(){
@@ -84143,25 +84137,23 @@ return false;
 
 exports['default']=CliqzADB;
 }, 632, null, "jsengine/build/modules/adblocker/adblocker.js");
-__d(/* jsengine/build/modules/adblocker/utils.js */function(global, require, module, exports) {'use strict';
+__d(/* jsengine/build/modules/adblocker/utils.js */function(global, require, module, exports) {
 
-Object.defineProperty(exports,'__esModule',{
+"use strict";
+
+Object.defineProperty(exports,"__esModule",{
 value:true});
 
-exports.log=log;
-
-function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{'default':obj};}
-
-var _adblockerAdblocker=require(632 /* ../adblocker/adblocker */);
-
-var _adblockerAdblocker2=_interopRequireDefault(_adblockerAdblocker);
+exports["default"]=log;
 
 function log(msg){
-var message='[adblock] '+msg;
-if(_adblockerAdblocker2['default'].adbDebug){
-dump(message+'\n');
+var message="[adblock] "+msg;
+if(false){
+dump(message+"\n");
 }
 }
+
+module.exports=exports["default"];
 }, 633, null, "jsengine/build/modules/adblocker/utils.js");
 __d(/* jsengine/build/modules/adblocker/filters-engine.js */function(global, require, module, exports) {'use strict';
 
@@ -84181,7 +84173,9 @@ function _classCallCheck(instance,Constructor){if(!(instance instanceof Construc
 
 var _antitrackingUrl=require(600 /* ../antitracking/url */);
 
-var _adblockerUtils=require(633 /* ../adblocker/utils */);
+var _utils=require(633 /* ./utils */);
+
+var _utils2=_interopRequireDefault(_utils);
 
 var _adblockerFiltersParsing=require(635 /* ../adblocker/filters-parsing */);
 
@@ -84239,10 +84233,10 @@ value:function set(key,value){
 var _this=this;
 
 
-(0,_adblockerUtils.log)('SET '+key+' => '+JSON.stringify(value));
+(0,_utils2['default'])('SET '+key+' => '+JSON.stringify(value));
 var inserted=false;
 var insertValue=function insertValue(token){
-(0,_adblockerUtils.log)('FOUND TOKEN '+token);
+(0,_utils2['default'])('FOUND TOKEN '+token);
 if(!(_this.indexOnlyOne&&inserted)){
 inserted=true;
 var bucket=_this.index.get(token);
@@ -84298,7 +84292,7 @@ var buckets=[];
 this.tokenizer(key,function(token){
 var bucket=_this2.index.get(token);
 if(bucket!==undefined){
-(0,_adblockerUtils.log)('BUCKET '+token+' size '+bucket.length);
+(0,_utils2['default'])('BUCKET '+token+' size '+bucket.length);
 buckets.push(bucket);
 }
 });
@@ -84313,7 +84307,7 @@ var buckets=[];
 tokens.forEach(function(token){
 var bucket=_this3.index.get(token);
 if(bucket!==undefined){
-(0,_adblockerUtils.log)('BUCKET '+token+' size '+bucket.length);
+(0,_utils2['default'])('BUCKET '+token+' size '+bucket.length);
 buckets.push(bucket);
 }
 });
@@ -84393,7 +84387,7 @@ filters.forEach(this.push.bind(this));
 _createClass(FilterReverseIndex,[{
 key:'push',
 value:function push(filter){
-(0,_adblockerUtils.log)('REVERSE INDEX '+this.name+' INSERT '+JSON.stringify(filter));
+(0,_utils2['default'])('REVERSE INDEX '+this.name+' INSERT '+JSON.stringify(filter));
 this.size+=1;
 var inserted=false;
 if(filter.filterStr){
@@ -84401,7 +84395,7 @@ inserted=this.index.set(filter.filterStr,filter);
 }
 
 if(!inserted){
-(0,_adblockerUtils.log)(this.name+' MISC FILTER '+JSON.stringify(filter));
+(0,_utils2['default'])(this.name+' MISC FILTER '+JSON.stringify(filter));
 this.miscFilters.push(filter);
 }
 }},
@@ -84413,7 +84407,7 @@ var filter=list[i];
 if(!checkedFilters.has(filter.id)){
 checkedFilters.add(filter.id);
 if((0,_adblockerFiltersMatching.matchNetworkFilter)(filter,request)){
-(0,_adblockerUtils.log)('INDEX '+this.name+' MATCH '+JSON.stringify(filter)+' ~= '+request.url);
+(0,_utils2['default'])('INDEX '+this.name+' MATCH '+JSON.stringify(filter)+' ~= '+request.url);
 return filter;
 }
 }
@@ -84438,7 +84432,7 @@ try{
 for(var _iterator=buckets[typeof Symbol==='function'?Symbol.iterator:'@@iterator'](),_step;!(_iteratorNormalCompletion=(_step=_iterator.next()).done);_iteratorNormalCompletion=true){
 var bucket=_step.value;
 
-(0,_adblockerUtils.log)('INDEX '+this.name+' BUCKET => '+bucket.length);
+(0,_utils2['default'])('INDEX '+this.name+' BUCKET => '+bucket.length);
 var result=this.matchList(request,bucket,checkedFilters);
 if(result!==null){
 return result;
@@ -84459,7 +84453,7 @@ throw _iteratorError;
 }
 }
 
-(0,_adblockerUtils.log)('INDEX '+this.name+' '+this.miscFilters.length+' remaining filters checked');
+(0,_utils2['default'])('INDEX '+this.name+' '+this.miscFilters.length+' remaining filters checked');
 
 
 return this.matchList(request,this.miscFilters,checkedFilters);
@@ -84559,7 +84553,7 @@ if(filters!==undefined){
 filters.forEach(this.push.bind(this));
 }
 
-(0,_adblockerUtils.log)(name+' CREATE BUCKET: '+this.filters.length+' filters +'+(this.hostnameAnchors.size+' hostnames'));
+(0,_utils2['default'])(name+' CREATE BUCKET: '+this.filters.length+' filters +'+(this.hostnameAnchors.size+' hostnames'));
 }
 
 _createClass(FilterHostnameDispatch,[{
@@ -84589,7 +84583,7 @@ for(var _iterator2=buckets[typeof Symbol==='function'?Symbol.iterator:'@@iterato
 var bucket=_step2.value;
 
 if(bucket!==undefined){
-(0,_adblockerUtils.log)(this.name+' bucket try to match hostnameAnchors ('+domain+'/'+bucket.name+')');
+(0,_utils2['default'])(this.name+' bucket try to match hostnameAnchors ('+domain+'/'+bucket.name+')');
 var result=bucket.match(request,checkedFilters);
 if(result!==null){
 return result;
@@ -84623,7 +84617,7 @@ checkedFilters=new Set();
 var result=this.matchWithDomain(request,request.hostname,checkedFilters);
 if(result===null){
 
-(0,_adblockerUtils.log)(this.name+' bucket try to match misc');
+(0,_utils2['default'])(this.name+' bucket try to match misc');
 result=this.filters.match(request,checkedFilters);
 }
 
@@ -84691,7 +84685,7 @@ this.size+=1;
 
 if(filter.optNotDomains.length===0&&filter.optDomains.length>0){
 filter.optDomains.split('|').forEach(function(domain){
-(0,_adblockerUtils.log)('SOURCE DOMAIN DISPATCH '+domain+' filter: '+JSON.stringify(filter));
+(0,_utils2['default'])('SOURCE DOMAIN DISPATCH '+domain+' filter: '+JSON.stringify(filter));
 var bucket=_this4.sourceDomainDispatch.get(domain);
 if(bucket===undefined){
 var newIndex=new FilterHostnameDispatch(_this4.name+'_'+domain);
@@ -84712,12 +84706,12 @@ value:function match(request,checkedFilters){
 var bucket=this.sourceDomainDispatch.get(request.sourceGD);
 var result=null;
 if(bucket!==undefined){
-(0,_adblockerUtils.log)('Source domain dispatch '+request.sourceGD+' size '+bucket.length);
+(0,_utils2['default'])('Source domain dispatch '+request.sourceGD+' size '+bucket.length);
 result=bucket.match(request,checkedFilters);
 }
 
 if(result===null){
-(0,_adblockerUtils.log)('Source domain dispatch misc size '+this.miscFilters.length);
+(0,_utils2['default'])('Source domain dispatch misc size '+this.miscFilters.length);
 result=this.miscFilters.match(request,checkedFilters);
 }
 
@@ -84973,14 +84967,14 @@ var hostname=_antitrackingUrl.URLInfo.get(url).hostname;
 if(hostname.startsWith('www.')){
 hostname=hostname.substr(4);
 }
-(0,_adblockerUtils.log)('getMatchingRules '+url+' => '+hostname+' ('+JSON.stringify(nodeInfo)+')');
+(0,_utils2['default'])('getMatchingRules '+url+' => '+hostname+' ('+JSON.stringify(nodeInfo)+')');
 
 
 var miscMatchingRules=this.miscFilters.getMatchingRules(hostname,nodeInfo);
 
 
 this.cosmetics.getFromKey(hostname).forEach(function(bucket){
-(0,_adblockerUtils.log)('Found bucket '+bucket.size);
+(0,_utils2['default'])('Found bucket '+bucket.size);
 var matchingRules=bucket.getMatchingRules(hostname,nodeInfo);
 Object.keys(matchingRules).forEach(function(selector){
 var r=matchingRules[selector];
@@ -84998,7 +84992,7 @@ Object.keys(miscMatchingRules).forEach(function(selector){
 rules.push(miscMatchingRules[selector].rule);
 });
 
-(0,_adblockerUtils.log)('COSMETICS found '+rules.length+' potential rules for '+url);
+(0,_utils2['default'])('COSMETICS found '+rules.length+' potential rules for '+url);
 return rules;
 }},
 
@@ -85013,7 +85007,7 @@ value:function getDomainRules(url,js){
 var hostname=_antitrackingUrl.URLInfo.get(url).hostname;
 var rules=[];
 var uniqIds=new Set();
-(0,_adblockerUtils.log)('getDomainRules '+url+' => '+hostname);
+(0,_utils2['default'])('getDomainRules '+url+' => '+hostname);
 this.cosmetics.getFromKey(hostname).forEach(function(bucket){
 var _iteratorNormalCompletion3=true;
 var _didIteratorError3=false;
@@ -85322,7 +85316,7 @@ return this.cosmetics.getDomainRules(url,this.js);
 {
 key:'match',
 value:function match(request){
-(0,_adblockerUtils.log)('MATCH '+JSON.stringify(request));
+(0,_utils2['default'])('MATCH '+JSON.stringify(request));
 request.tokens=tokenizeURL(request.url);
 
 var checkedFilters=new Set();
@@ -85346,7 +85340,7 @@ result=null;
 }
 }
 
-(0,_adblockerUtils.log)('Total filters '+checkedFilters.size);
+(0,_utils2['default'])('Total filters '+checkedFilters.size);
 if(result!==null){
 if(result.redirect){
 var _resources$get=this.resources.get(result.redirect);
@@ -85355,17 +85349,17 @@ var data=_resources$get.data;
 var contentType=_resources$get.contentType;
 
 var dataUrl=undefined;
-
-
-
-
-
-
-return{
-match:false};
-
+if(contentType.includes(';')){
+dataUrl='data:'+contentType+','+data;
+}else{
+dataUrl='data:'+contentType+';base64,'+btoa(data);
 }
 
+return{
+match:true,
+redirect:dataUrl.trim()};
+
+}
 return{match:true};
 }
 
@@ -85524,6 +85518,8 @@ function _classCallCheck(instance,Constructor){if(!(instance instanceof Construc
 
 var _adblockerUtils=require(633 /* ../adblocker/utils */);
 
+var _corePlatform=require(584 /* ../core/platform */);
+
 
 var uidGen=0;
 function getUID(){
@@ -85591,15 +85587,15 @@ function serializeFilter(filter){
 var serialized=babelHelpers.extends(Object.create(null),filter);
 
 
-delete serialized.id;
+serialized.id=undefined;
 if(serialized._r!==undefined){
-delete serialized._r;
+serialized._r=undefined;
 }
 if(serialized._nds!==undefined){
-delete serialized._nds;
+serialized._nds=undefined;
 }
 if(serialized._ds!==undefined){
-delete serialized._ds;
+serialized._ds=undefined;
 }
 
 return serialized;
@@ -85924,7 +85920,7 @@ this.setMask(NETWORK_FILTER_MASK.isRegex,0);
 }
 
 
-if(this.isHostnameAnchor&&this.hostname.startsWith("www.")){
+if(this.isHostnameAnchor&&this.hostname.startsWith('www.')){
 this.hostname=this.hostname.slice(4);
 }
 
@@ -85937,22 +85933,18 @@ if(this.isRegex){
 
 
 }else{
-
-
-
-
-if(this._f!==undefined){
-this._f=this._f.toLowerCase();
-}
 if(this.hostname){
 this.hostname=this.hostname.toLowerCase();
+}
+if(this._f){
+this._f=this._f.toLowerCase();
 }
 }
 }
 
 
 if(!this._f){
-delete this._f;
+this._f=undefined;
 }
 }},
 {
@@ -86014,6 +86006,8 @@ return false;
 key:'parseOptions',
 value:function parseOptions(rawOptions){
 var _this=this;
+
+
 
 rawOptions.split(',').forEach(function(rawOption){
 var negation=false;
@@ -86127,8 +86121,7 @@ break;
 
 default:
 
-_this.supported=false;
-(0,_adblockerUtils.log)('NOT SUPPORTED OPTION '+option);}
+_this.supported=false;}
 
 });
 
@@ -86334,6 +86327,14 @@ return{supported:false};
 }else if(line.startsWith('#',afterSharpIndex)||line.startsWith('@#',afterSharpIndex)){
 
 
+if(_corePlatform.platformName==='mobile'){
+
+
+
+
+return{supported:false};
+}
+
 return new CosmeticFilter(line,sharpIndex);
 }
 }
@@ -86354,13 +86355,12 @@ list.forEach(function(line){
 if(line){
 var filter=parseFilter(line.trim());
 if(filter.supported&&!filter.isComment){
-(0,_adblockerUtils.log)('compiled '+line+' into '+JSON.stringify(filter));
 if(filter.isNetworkFilter){
 
 if(!debug){
-delete filter.supported;
-delete filter.isNetworkFilter;
-delete filter.isComment;
+filter.supported=undefined;
+filter.isNetworkFilter=undefined;
+filter.isComment=undefined;
 }else{
 filter.rawLine=line;
 }
@@ -86369,8 +86369,8 @@ networkFilters.push(filter);
 }else{
 
 if(!debug){
-delete filter.supported;
-delete filter.isCosmeticFilter;
+filter.supported=undefined;
+filter.isCosmeticFilter=undefined;
 }else{
 filter.rawLine=line;
 }
