@@ -39,15 +39,21 @@ public class JSBridge : RCTEventEmitter {
         actionCounter += 1
         let actionId = actionCounter
         
+        // create a semaphore for this action
+        let sem = dispatch_semaphore_create(0)
+        self.eventSemaphores[actionId] = sem
+        
         // dispatch event
         self.sendEventWithName("callAction", body: ["id": actionId, "action": functionName, "args": args])
         
-        // create a semaphore and wait for it
-        let sem = dispatch_semaphore_create(0)
-        self.eventSemaphores[actionId] = sem
-        dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER)
+        // wait for the semaphore
+        let timeout = dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER)
 
         // after signal the reply should be ready in the cache
+        if timeout != 0 {
+            print("action timeout \(actionId), \(functionName)")
+            self.replyCache[actionId] = ["error": "timeout"]
+        }
         let reply = self.replyCache[actionId]!
         
         // clear semaphore and reply cache
