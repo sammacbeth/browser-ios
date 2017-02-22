@@ -27,7 +27,7 @@ public class Engine {
         #if React_Debug
             let jsCodeLocation = NSURL(string: "http://localhost:8081/index.ios.bundle?platform=ios")
         #else
-            let jsCodeLocation = NSBundle.mainBundle().URLForResource("main", withExtension: "jsbundle")
+            let jsCodeLocation = NSBundle.mainBundle().URLForResource("jsengine.bundle", withExtension: "js")
         #endif
         
         rootView = RCTRootView( bundleURL: jsCodeLocation, moduleName: "ExtensionApp", initialProperties: nil, launchOptions: nil )
