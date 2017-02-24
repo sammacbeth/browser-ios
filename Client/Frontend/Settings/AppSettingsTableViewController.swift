@@ -73,6 +73,9 @@ class AppSettingsTableViewController: SettingsTableViewController {
             HumanWebSetting(settings: self)
 
         ]
+        #if React_Debug
+            generalSettings.append(TestReact(settings: self))
+        #endif
         
         //Cliqz: removed unused sections from Settings table
 //        let accountChinaSyncSetting: [Setting]
