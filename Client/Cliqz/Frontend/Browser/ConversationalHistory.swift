@@ -62,8 +62,8 @@ class ConversationalHistory: UIViewController, UITableViewDataSource, UITableVie
 
 	func loadData() {
 		ConversationalHistoryAPI.getHistory { (data) in
-			self.domainsHistory = data
-			self.sortedKeys = data.keysSortedByValueUsingComparator({ (a, b) -> NSComparisonResult in
+			self.domainsHistory = data.valueForKey("domains") as? NSDictionary
+			self.sortedKeys = self.domainsHistory.keysSortedByValueUsingComparator({ (a, b) -> NSComparisonResult in
 				if let x = a as? [String: AnyObject],
 					y = b as? [String: AnyObject] {
 					if (x["lastVisitedAt"] as! NSNumber).doubleValue > (y["lastVisitedAt"] as! NSNumber).doubleValue {
@@ -74,7 +74,7 @@ class ConversationalHistory: UIViewController, UITableViewDataSource, UITableVie
 				}
 				return NSComparisonResult.OrderedSame
 			}) as! [String]
-			self.historyTableView.reloadData()
+            self.historyTableView.reloadData()
 		}
 	}
 

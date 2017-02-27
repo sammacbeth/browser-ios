@@ -43,19 +43,24 @@ class ConversationalHistoryAPI {
 	
 	class func getHistory(callback: (NSDictionary) -> Void) {
         // this API should return something easy to use - e.g. list of DomainHistory entries
-        Engine.sharedInstance.getHistory().getHistory()
+        let response = Engine.sharedInstance.getHistory().getHistory()
+        print(response)
         
+        if response.count > 0 {
+            callback(response)
+        } else {
 		Alamofire.request(.GET, "\(self.host)/getHistory?uid=\(self.uniqueID)", parameters: nil, encoding: .URL, headers: nil).responseJSON { (response) in
 			if response.result.isSuccess {
-				if let result = response.result.value as? NSDictionary,
-					domains = result.valueForKey("domains") as? NSDictionary {
-					callback(domains)
+                if let result = response.result.value as? NSDictionary {
+                    print("\(result)")
+					callback(result)
 				}
 			} else {
 				callback(NSDictionary())
 				print("Get History is failed :((( --- \(response)")
 			}
 		}
+        }
 	}
 
 	class func pushAllHistory(history: Cursor<Site>?, completionHandler:(NSError?) -> Void) {
@@ -79,7 +84,7 @@ class ConversationalHistoryAPI {
 	private class func generateParamsForHistoryItem(url: String, title: String, visitedDate: MicrosecondTimestamp) -> [String: AnyObject] {
 		return ["url": url,
 		        "title": title,
-			    "lastVisitDate": NSNumber(unsignedLongLong:visitedDate)]
+			    "lastVisitDate": NSNumber(unsignedLongLong:visitedDate / 1000)]
 	}
 
 }

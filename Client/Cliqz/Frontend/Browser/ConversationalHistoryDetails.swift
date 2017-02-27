@@ -20,7 +20,7 @@ class ConversationalHistoryDetails: UIViewController, UITableViewDataSource, UIT
 
 	var detaildHistory: NSDictionary! {
 		didSet {
-			if let d = detaildHistory.valueForKey("urls") as? NSDictionary {
+			if let d = detaildHistory.valueForKey("visits") as? NSDictionary {
 				 self.sortedURLs = d.keysSortedByValueUsingComparator({ (a, b) -> NSComparisonResult in
 					if let x = a as? [String: AnyObject],
 							y = b as? [String: AnyObject] {
@@ -35,11 +35,11 @@ class ConversationalHistoryDetails: UIViewController, UITableViewDataSource, UIT
 					return NSComparisonResult.OrderedSame
 				}) as! [String]
 			}
-			self.urls = detaildHistory.valueForKey("urls") as? NSDictionary
+			self.urls = detaildHistory.valueForKey("visits") as? NSArray
 		}
 	}
 	
-	private var urls: NSDictionary!
+	private var urls: NSArray!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -65,16 +65,16 @@ class ConversationalHistoryDetails: UIViewController, UITableViewDataSource, UIT
 
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if let data = self.urls {
-			return data.allKeys.count
+			return data.count
 		}
 		return 0
 	}
 
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell =  self.historyTableView.dequeueReusableCellWithIdentifier(self.historyCellID) as! HistoryDetailCell
-		let key = self.sortedURLs[indexPath.row]
-		let value = self.urls.valueForKey(key) as! NSDictionary
-		cell.URLLabel.text = key
+//		let key = self.sortedURLs[indexPath.row]
+		let value = self.urls[indexPath.row] as! NSDictionary
+		cell.URLLabel.text = value.valueForKey("url") as? String
 		if let timeinterval = value.valueForKey("lastVisitedAt") as? NSNumber {
 			let x = NSDate(timeIntervalSince1970: timeinterval.doubleValue)
 			cell.timeLabel.text = x.toRelativeTimeString()
@@ -161,8 +161,8 @@ class ConversationalHistoryDetails: UIViewController, UITableViewDataSource, UIT
 	}
 
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		let key = self.sortedURLs[indexPath.row]
-		if let url = NSURL(string: key) {
+		let key = self.urls[indexPath.row]
+		if let urlString = key.objectForKey("url") as? String, let url = NSURL(string: urlString) {
 			self.navigationController?.popViewControllerAnimated(false)
 			self.delegate?.navigateToURL(url)
 		}
