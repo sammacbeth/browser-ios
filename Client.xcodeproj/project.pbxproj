@@ -424,7 +424,6 @@
 		2FFC4D381ABE3C420081D675 /* FxAStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFC4D371ABE3C420081D675 /* FxAStateTests.swift */; };
 		3905274C1C874D35007E0BB7 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3905274B1C874D35007E0BB7 /* NotificationCenter.framework */; };
 		3905274F1C874D35007E0BB7 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3905274E1C874D35007E0BB7 /* TodayViewController.swift */; };
-		390527561C874D35007E0BB7 /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3905274A1C874D35007E0BB7 /* Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		39098DC41CAD5ACB00AE87F3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 391AEFD11C8F11ED00691F84 /* Images.xcassets */; };
 		392ED6B71D06E85E009D9B62 /* NewTabChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392ED6B61D06E85E009D9B62 /* NewTabChoiceViewController.swift */; };
 		392ED7E41D0AEF56009D9B62 /* NewTabAccessors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392ED7E31D0AEF56009D9B62 /* NewTabAccessors.swift */; };
@@ -467,9 +466,6 @@
 		4FBAF3631DF97C3900F4CEEE /* getHistory.js in Resources */ = {isa = PBXBuildFile; fileRef = 4FBAF3621DF97C3900F4CEEE /* getHistory.js */; };
 		4FBAF3651DF995F000F4CEEE /* ConversationalHistoryDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBAF3641DF995F000F4CEEE /* ConversationalHistoryDetails.swift */; };
 		4FBAF3691DF9C72A00F4CEEE /* ConversationalHistoryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBAF3681DF9C72A00F4CEEE /* ConversationalHistoryAPI.swift */; };
-		4FBAF36A1DF9CBE400F4CEEE /* ConversationalHistoryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBAF3681DF9C72A00F4CEEE /* ConversationalHistoryAPI.swift */; };
-		4FBAF36B1DF9CBE400F4CEEE /* ConversationalHistoryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBAF3681DF9C72A00F4CEEE /* ConversationalHistoryAPI.swift */; };
-		4FBAF36C1DF9CBE500F4CEEE /* ConversationalHistoryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBAF3681DF9C72A00F4CEEE /* ConversationalHistoryAPI.swift */; };
 		4FD933401D5CD50600EBA7D6 /* CliqzTabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD9333F1D5CD50600EBA7D6 /* CliqzTabButton.swift */; };
 		4FE4223E1DD4ADFD000A7D1C /* ModifyLinksForNewTab.js in Resources */ = {isa = PBXBuildFile; fileRef = 4FE4223D1DD4ADFC000A7D1C /* ModifyLinksForNewTab.js */; };
 		4FE422401DD5E207000A7D1C /* InteractiveIntro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4223F1DD5E207000A7D1C /* InteractiveIntro.swift */; };
@@ -738,7 +734,6 @@
 		E4B7B77D1A793CF20022C5E0 /* FiraSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4B7B7561A793CF20022C5E0 /* FiraSans-Regular.ttf */; };
 		E4B7B77E1A793CF20022C5E0 /* FiraSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4B7B7571A793CF20022C5E0 /* FiraSans-SemiBold.ttf */; };
 		E4B7B7861A793CF20022C5E0 /* FiraSans-UltraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4B7B75F1A793CF20022C5E0 /* FiraSans-UltraLight.ttf */; };
-		E4BA8A351B4B0A1700BC2E95 /* ViewLater.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E4BA8A2B1B4B0A1600BC2E95 /* ViewLater.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E4BA8A8A1B4B10F400BC2E95 /* Storage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FCAE21A1ABB51F800877008 /* Storage.framework */; };
 		E4BA8AA81B4B15EF00BC2E95 /* ActionRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BA8AA11B4B15EF00BC2E95 /* ActionRequestHandler.swift */; };
 		E4BA8AAD1B4B15EF00BC2E95 /* ViewLater.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4BA8AA61B4B15EF00BC2E95 /* ViewLater.xcassets */; };
@@ -880,8 +875,6 @@
 		F84B22041A0910F600AAB793 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84B21E51A0910F600AAB793 /* AppDelegate.swift */; };
 		F84B220B1A0910F600AAB793 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F84B21EF1A0910F600AAB793 /* Images.xcassets */; };
 		F84B22241A09122500AAB793 /* HomePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84B22221A09122500AAB793 /* HomePanelViewController.swift */; };
-		F84B22541A0920C600AAB793 /* ShareTo.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F84B22491A0920C600AAB793 /* ShareTo.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		F84B22661A09210A00AAB793 /* SendTo.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F84B225C1A09210A00AAB793 /* SendTo.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F8708D2A1A0970B40051AB07 /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8708D201A0970990051AB07 /* ActionViewController.swift */; };
 		F8708D2C1A0970B40051AB07 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8708D221A0970990051AB07 /* MainInterface.storyboard */; };
 		F8708D2E1A0970B70051AB07 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8708D251A0970990051AB07 /* Images.xcassets */; };
@@ -1071,13 +1064,6 @@
 			remoteGlobalIDString = 288A2D851AB8B3260023ABC3;
 			remoteInfo = Shared;
 		};
-		390527541C874D35007E0BB7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F84B21B61A090F8100AAB793 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 390527491C874D35007E0BB7;
-			remoteInfo = Today;
-		};
 		7B9A62DA1C4002B1005C83DC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7B9A62B91C4002B1005C83DC /* SQLite.xcodeproj */;
@@ -1197,13 +1183,6 @@
 			remoteGlobalIDString = 28F951FA19D0F9FA00DCE892;
 			remoteInfo = FxA;
 		};
-		E4BA8A331B4B0A1700BC2E95 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F84B21B61A090F8100AAB793 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E4BA8A2A1B4B0A1600BC2E95;
-			remoteInfo = ViewLater;
-		};
 		E4D567241ADECE2700F1EFE7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F84B21B61A090F8100AAB793 /* Project object */;
@@ -1267,20 +1246,6 @@
 			remoteGlobalIDString = F84B21BD1A090F8100AAB793;
 			remoteInfo = Client;
 		};
-		F84B22511A0920C600AAB793 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F84B21B61A090F8100AAB793 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F84B22481A0920C600AAB793;
-			remoteInfo = ShareToFirefox;
-		};
-		F84B22641A09210A00AAB793 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F84B21B61A090F8100AAB793 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F84B225B1A09210A00AAB793;
-			remoteInfo = SendToDevice;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -1329,20 +1294,6 @@
 			files = (
 				E6ECF2381C974E0F00B0DC93 /* KIF.framework in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F84B22531A0920C600AAB793 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				390527561C874D35007E0BB7 /* Today.appex in Embed App Extensions */,
-				F84B22541A0920C600AAB793 /* ShareTo.appex in Embed App Extensions */,
-				F84B22661A09210A00AAB793 /* SendTo.appex in Embed App Extensions */,
-				E4BA8A351B4B0A1700BC2E95 /* ViewLater.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -5095,7 +5046,6 @@
 				F84B21BA1A090F8100AAB793 /* Sources */,
 				F84B21BC1A090F8100AAB793 /* Resources */,
 				28CE83DE1A1D1E7C00576538 /* Frameworks */,
-				F84B22531A0920C600AAB793 /* Embed App Extensions */,
 				E6639F191BF11E3A002D0853 /* Conditionally Add Settings Bundle */,
 				E6B09CD31C74EEDB00C63FA1 /* Copy Frameworks */,
 				1E79DD561D4FB3E3006BEB4A /* Fabric Run script */,
@@ -5105,16 +5055,12 @@
 			buildRules = (
 			);
 			dependencies = (
-				F84B22521A0920C600AAB793 /* PBXTargetDependency */,
-				F84B22651A09210A00AAB793 /* PBXTargetDependency */,
 				E4A888191A95679500CDC337 /* PBXTargetDependency */,
 				288A2D9C1AB8B3260023ABC3 /* PBXTargetDependency */,
 				2FCAE2301ABB51F800877008 /* PBXTargetDependency */,
 				2FA436111ABB83B4008031D1 /* PBXTargetDependency */,
 				282731741ABC9BE700AA1954 /* PBXTargetDependency */,
 				E4D5672E1ADECE2800F1EFE7 /* PBXTargetDependency */,
-				E4BA8A341B4B0A1700BC2E95 /* PBXTargetDependency */,
-				390527551C874D35007E0BB7 /* PBXTargetDependency */,
 			);
 			name = Client;
 			productName = Client;
@@ -6170,7 +6116,6 @@
 				E444F7E01B4B1C1A00FEB19B /* NSUserDefaultsPrefs.swift in Sources */,
 				E4BA8AA81B4B15EF00BC2E95 /* ActionRequestHandler.swift in Sources */,
 				E444F7E21B4B1C6800FEB19B /* SearchEngines.swift in Sources */,
-				4FBAF36C1DF9CBE500F4CEEE /* ConversationalHistoryAPI.swift in Sources */,
 				E444F7DF1B4B1C1200FEB19B /* Profile.swift in Sources */,
 				E444F7E31B4B1C8000FEB19B /* OpenSearch.swift in Sources */,
 			);
@@ -6257,6 +6202,7 @@
 			files = (
 				E68E39BE1C46F42000B85F42 /* AppSettingsTableViewController.swift in Sources */,
 				1E79DD1F1D4FB2C5006BEB4A /* CliqzAppSettingsOptions.swift in Sources */,
+				B354B5BC1E5C5A06001B38A1 /* Engine.swift in Sources */,
 				1E79DEA91D508368006BEB4A /* AWSModel.m in Sources */,
 				4FF7DCF41D785A4200089234 /* SettingsPrefs.swift in Sources */,
 				1E79DE951D508368006BEB4A /* NSValueTransformer+AWSMTLPredefinedTransformerAdditions.m in Sources */,
@@ -6366,7 +6312,6 @@
 				0B1C05D71A798B1F004C78B0 /* UIImageViewAligned.m in Sources */,
 				1E79DEA61D508368006BEB4A /* AWSUICKeyChainStore.m in Sources */,
 				0BB5B30B1AC0AD1F0052877D /* LoginsHelper.swift in Sources */,
-				B354B5BC1E5C5A06001B38A1 /* Engine.swift in Sources */,
 				1EB293E01DB7AAC500D852C8 /* CliqzMainWindow.swift in Sources */,
 				1E79DD171D4FB2C5006BEB4A /* ConnectionManager.swift in Sources */,
 				E69E06C91C76198000D0F926 /* AuthenticationManagerConstants.swift in Sources */,
@@ -6616,7 +6561,6 @@
 				D38B2D8C1A8D98D90040E6B5 /* OpenSearch.swift in Sources */,
 				E418D0D91A251B3200CAE47A /* Profile.swift in Sources */,
 				F8708D321A0970B70051AB07 /* ShareViewController.swift in Sources */,
-				4FBAF36B1DF9CBE400F4CEEE /* ConversationalHistoryAPI.swift in Sources */,
 				28CDA55C1A43C37C005C318C /* NSUserDefaultsPrefs.swift in Sources */,
 				E41A7D4B1A1BE04500245963 /* InitialViewController.swift in Sources */,
 			);
@@ -6632,7 +6576,6 @@
 				E4BCAAB91B0537E300855D82 /* InstructionsViewController.swift in Sources */,
 				E42CCDE81A23A73D00B794D3 /* Profile.swift in Sources */,
 				E4BCAAD91B05380B00855D82 /* ClientPickerViewController.swift in Sources */,
-				4FBAF36A1DF9CBE400F4CEEE /* ConversationalHistoryAPI.swift in Sources */,
 				F8708D2A1A0970B40051AB07 /* ActionViewController.swift in Sources */,
 				28CDA5641A43C37D005C318C /* NSUserDefaultsPrefs.swift in Sources */,
 			);
@@ -6756,11 +6699,6 @@
 			target = 288A2D851AB8B3260023ABC3 /* Shared */;
 			targetProxy = 2FCAE23B1ABB520700877008 /* PBXContainerItemProxy */;
 		};
-		390527551C874D35007E0BB7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 390527491C874D35007E0BB7 /* Today */;
-			targetProxy = 390527541C874D35007E0BB7 /* PBXContainerItemProxy */;
-		};
 		7B9A62F91C400303005C83DC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "SQLite iOS";
@@ -6785,11 +6723,6 @@
 			isa = PBXTargetDependency;
 			name = FxA;
 			targetProxy = E4A888181A95679500CDC337 /* PBXContainerItemProxy */;
-		};
-		E4BA8A341B4B0A1700BC2E95 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E4BA8A2A1B4B0A1600BC2E95 /* ViewLater */;
-			targetProxy = E4BA8A331B4B0A1700BC2E95 /* PBXContainerItemProxy */;
 		};
 		E4D567251ADECE2700F1EFE7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -6835,16 +6768,6 @@
 			isa = PBXTargetDependency;
 			target = F84B21BD1A090F8100AAB793 /* Client */;
 			targetProxy = F84B21D41A090F8100AAB793 /* PBXContainerItemProxy */;
-		};
-		F84B22521A0920C600AAB793 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F84B22481A0920C600AAB793 /* ShareTo */;
-			targetProxy = F84B22511A0920C600AAB793 /* PBXContainerItemProxy */;
-		};
-		F84B22651A09210A00AAB793 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F84B225B1A09210A00AAB793 /* SendTo */;
-			targetProxy = F84B22641A09210A00AAB793 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -9682,7 +9605,7 @@
 					"-framework",
 					"\"RNFS\"",
 				);
-				OTHER_SWIFT_FLAGS = "-DMOZ_CHANNEL_FENNEC -DCLIQZ -DDEBUG -DBETA";
+				OTHER_SWIFT_FLAGS = "-DMOZ_CHANNEL_FENNEC -DCLIQZ -DDEBUG -DBETA -DReact_Debug";
 				PRODUCT_BUNDLE_IDENTIFIER = hackDay.cliqz.com;
 				PRODUCT_MODULE_NAME = Client;
 				PRODUCT_NAME = TalkToMe;
