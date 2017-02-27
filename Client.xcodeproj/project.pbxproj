@@ -597,6 +597,8 @@
 		B354B5E01E5C86C5001B38A1 /* JSBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B354B5DF1E5C86C5001B38A1 /* JSBridge.swift */; };
 		B354B5E21E5C931D001B38A1 /* JSBridgeBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B354B5E11E5C931D001B38A1 /* JSBridgeBridge.m */; };
 		B354B5E41E5DCDAD001B38A1 /* jsengine.bundle.js in Resources */ = {isa = PBXBuildFile; fileRef = B354B5E31E5DCDAD001B38A1 /* jsengine.bundle.js */; };
+		B39EF5271E6455ED004B744C /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39EF5261E6455ED004B744C /* History.swift */; };
+		B39EF5291E64578C004B744C /* HistoryBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B39EF5281E64578C004B744C /* HistoryBridge.m */; };
 		B729F06A1B75CBEF00745F7A /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B729F0691B75CBEF00745F7A /* UserAgent.swift */; };
 		C400467C1CF4E43E00B08303 /* BackForwardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C400467B1CF4E43E00B08303 /* BackForwardListViewController.swift */; };
 		C40046FA1CF8E0B200B08303 /* BackForwardListAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40046F91CF8E0B200B08303 /* BackForwardListAnimator.swift */; };
@@ -1964,6 +1966,8 @@
 		B354B5DF1E5C86C5001B38A1 /* JSBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSBridge.swift; path = JSEngine/JSBridge.swift; sourceTree = "<group>"; };
 		B354B5E11E5C931D001B38A1 /* JSBridgeBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSBridgeBridge.m; path = JSEngine/JSBridgeBridge.m; sourceTree = "<group>"; };
 		B354B5E31E5DCDAD001B38A1 /* jsengine.bundle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jsengine.bundle.js; sourceTree = "<group>"; };
+		B39EF5261E6455ED004B744C /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = History.swift; path = JSEngine/History.swift; sourceTree = "<group>"; };
+		B39EF5281E64578C004B744C /* HistoryBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HistoryBridge.m; path = JSEngine/HistoryBridge.m; sourceTree = "<group>"; };
 		B729F0691B75CBEF00745F7A /* UserAgent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAgent.swift; path = ../Shared/UserAgent.swift; sourceTree = "<group>"; };
 		C400467B1CF4E43E00B08303 /* BackForwardListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackForwardListViewController.swift; sourceTree = "<group>"; };
 		C40046F91CF8E0B200B08303 /* BackForwardListAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackForwardListAnimator.swift; sourceTree = "<group>"; };
@@ -3909,6 +3913,8 @@
 				1E705C3A1D5E059E009FAEE1 /* InterceptorURLProtocol.swift */,
 				B354B5DF1E5C86C5001B38A1 /* JSBridge.swift */,
 				B354B5E11E5C931D001B38A1 /* JSBridgeBridge.m */,
+				B39EF5261E6455ED004B744C /* History.swift */,
+				B39EF5281E64578C004B744C /* HistoryBridge.m */,
 			);
 			name = JSEngine;
 			sourceTree = "<group>";
@@ -6368,6 +6374,7 @@
 				1E79DEA81D508368006BEB4A /* AWSLogging.m in Sources */,
 				A83E5AB71C1D993D0026D912 /* UIPasteboardExtensions.swift in Sources */,
 				7BC68D171CC153210043562A /* AppMenuConfiguration.swift in Sources */,
+				B39EF5271E6455ED004B744C /* History.swift in Sources */,
 				4FA29B261D64C0B100C59F5E /* TabsViewController.swift in Sources */,
 				7BC68CC81CC152B70043562A /* MenuItemView.swift in Sources */,
 				1E79DD141D4FB2C5006BEB4A /* ConfigurationManager.swift in Sources */,
@@ -6434,6 +6441,7 @@
 				A93067E81D0FE18E00C49C6E /* NightModeHelper.swift in Sources */,
 				4FBAF3651DF995F000F4CEEE /* ConversationalHistoryDetails.swift in Sources */,
 				D3C744CD1A687D6C004CE85D /* URIFixup.swift in Sources */,
+				B39EF5291E64578C004B744C /* HistoryBridge.m in Sources */,
 				7BC68D091CC153020043562A /* RoundedToolbar.swift in Sources */,
 				39AC591A1CC574AB0042C2F5 /* HomePageSettingsViewController.swift in Sources */,
 				1E79DE7E1D508368006BEB4A /* AWSTaskCompletionSource.m in Sources */,
