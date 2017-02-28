@@ -27,14 +27,19 @@ public class HistoryBridge : NSObject {
         
     }
     
-    public func getHistory() -> NSDictionary {
-        let response = Engine.sharedInstance.getBridge().callAction("getHistory", args: [])
-        if let result = response["result"] as? NSDictionary {
-            print(result)
-            return result
-        } else {
-            return NSDictionary()
-        }
+    public func getHistory(callback : (NSDictionary) -> Void) {
+        Engine.sharedInstance.getBridge().callAction("getHistory", args: [], callback: { response in
+            if let result = response["result"] as? NSDictionary {
+                print(result)
+                callback(result)
+            } else {
+                callback(NSDictionary())
+            }
+        })
+    }
+    
+    public func addHistoryItem(history: [String: AnyObject]) {
+        Engine.sharedInstance.getBridge().publishEvent("history:add", args: [history])
     }
     
 }

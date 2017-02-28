@@ -38,28 +38,14 @@ class ConversationalHistoryAPI {
 	}()
 
 	class func pushHistoryItem(visit: SiteVisit) {
-        Engine.sharedInstance.getBridge().publishEvent("history:add", args: [self.generateParamsForHistoryItem(visit.site.url, title: visit.site.title, visitedDate: visit.date)])
+        Engine.sharedInstance.getHistory().addHistoryItem(self.generateParamsForHistoryItem(visit.site.url, title: visit.site.title, visitedDate: visit.date))
 	}
 	
 	class func getHistory(callback: (NSDictionary) -> Void) {
-        // this API should return something easy to use - e.g. list of DomainHistory entries
-        let response = Engine.sharedInstance.getHistory().getHistory()
-        print(response)
-        
-        if response.count > 0 {
-            callback(response)
-        } else {
-		Alamofire.request(.GET, "\(self.host)/getHistory?uid=\(self.uniqueID)", parameters: nil, encoding: .URL, headers: nil).responseJSON { (response) in
-			if response.result.isSuccess {
-                if let result = response.result.value as? NSDictionary {
-                    print("\(result)")
-					callback(result)
-				}
-			} else {
-				callback(NSDictionary())
-				print("Get History is failed :((( --- \(response)")
-			}
-		}
+        Engine.sharedInstance.getHistory().getHistory { history in
+            dispatch_async(dispatch_get_main_queue()) {
+                callback(history)
+            }
         }
 	}
 
@@ -74,11 +60,9 @@ class ConversationalHistoryAPI {
 	}
 
 	class func pushURLAndQuery(url: String, query: String) {
-        Engine.sharedInstance.getBridge().publishEvent("query:click", args: ["query": query, "url": url])
 	}
 
 	class func pushMetadata(metadata: [String: AnyObject], url: String) {
-        Engine.sharedInstance.getBridge().publishEvent("core:url-meta", args: [])
 	}
 
 	private class func generateParamsForHistoryItem(url: String, title: String, visitedDate: MicrosecondTimestamp) -> [String: AnyObject] {
