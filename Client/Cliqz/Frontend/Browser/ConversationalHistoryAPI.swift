@@ -55,7 +55,7 @@ class ConversationalHistoryAPI {
 			for site in sites {
 				historyResults.append(self.generateParamsForHistoryItem((site?.url)!, title: (site?.title)!, visitedDate: (site?.latestVisit!.date)!))
 			}
-            Engine.sharedInstance.getBridge().publishEvent("history:add", args: [historyResults])
+            Engine.sharedInstance.getHistory().bulkAddHistory(historyResults, completionHandler: completionHandler)
 		}
 	}
 

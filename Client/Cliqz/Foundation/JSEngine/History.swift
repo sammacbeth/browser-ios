@@ -42,4 +42,10 @@ public class HistoryBridge : NSObject {
         Engine.sharedInstance.getBridge().publishEvent("history:add", args: [history])
     }
     
+    public func bulkAddHistory(history: [[String: AnyObject]], completionHandler:(NSError?) -> Void) {
+        Engine.sharedInstance.getBridge().callAction("bulkAddHistory", args: [history], callback: { result in
+            completionHandler(nil)
+        })
+    }
+    
 }
