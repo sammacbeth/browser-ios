@@ -68,7 +68,7 @@ class ConversationalHistoryAPI {
 	private class func generateParamsForHistoryItem(url: String, title: String, visitedDate: MicrosecondTimestamp) -> [String: AnyObject] {
 		return ["url": url,
 		        "title": title,
-			    "lastVisitDate": NSNumber(unsignedLongLong:visitedDate / 1000)]
+			    "lastVisitDate": NSNumber(unsignedLongLong:visitedDate)]
 	}
 
 }
