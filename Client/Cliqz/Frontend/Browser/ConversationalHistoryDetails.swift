@@ -76,7 +76,7 @@ class ConversationalHistoryDetails: UIViewController, UITableViewDataSource, UIT
 		let value = self.urls[indexPath.row] as! NSDictionary
 		cell.URLLabel.text = value.valueForKey("url") as? String
 		if let timeinterval = value.valueForKey("lastVisitedAt") as? NSNumber {
-			let x = NSDate(timeIntervalSince1970: timeinterval.doubleValue / 1000)
+			let x = NSDate(timeIntervalSince1970: timeinterval.doubleValue / 1000000)
 			cell.timeLabel.text = x.toRelativeTimeString()
 		}
 		if let title = value.valueForKey("title") as? String {

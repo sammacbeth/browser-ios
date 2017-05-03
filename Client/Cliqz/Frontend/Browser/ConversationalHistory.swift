@@ -98,7 +98,7 @@ class ConversationalHistory: UIViewController, UITableViewDataSource, UITableVie
 			cell.URLLabel.text = key
 		}
 		if let timeinterval = value.valueForKey("lastVisitedAt") as? NSNumber {
-			let x = NSDate(timeIntervalSince1970: timeinterval.doubleValue / 1000)
+			let x = NSDate(timeIntervalSince1970: timeinterval.doubleValue / 1000000)
 			cell.titleLabel.text = x.toRelativeTimeString()
 		}
 		cell.tag = indexPath.row
