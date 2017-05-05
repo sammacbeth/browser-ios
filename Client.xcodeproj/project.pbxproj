@@ -457,7 +457,6 @@
 		4F97573C1AFA6F37006ECC24 /* ReaderViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F97573A1AFA6F37006ECC24 /* ReaderViewUITests.swift */; };
 		4F9A7B611D6DDAC6005F02CB /* CliqzExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9A7B601D6DDAC6005F02CB /* CliqzExtensionViewController.swift */; };
 		4F9A7B751D6F2BFA005F02CB /* CliqzURLBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9A7B741D6F2BFA005F02CB /* CliqzURLBarView.swift */; };
-		4F9CF5E71E8045EF008EEC7C /* jsengine.bundle.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F9CF5E61E8045EF008EEC7C /* jsengine.bundle.js */; };
 		4FA29B251D64C0B100C59F5E /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA29B211D64C0B100C59F5E /* DashboardViewController.swift */; };
 		4FA29B261D64C0B100C59F5E /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA29B221D64C0B100C59F5E /* TabsViewController.swift */; };
 		4FA29B271D64C0B100C59F5E /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA29B231D64C0B100C59F5E /* HistoryViewController.swift */; };
@@ -598,6 +597,7 @@
 		AFF56CFE1EA8B52D0025E354 /* CliqzNewsDetailsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF56CFD1EA8B52D0025E354 /* CliqzNewsDetailsDataSource.swift */; };
 		AFF56D001EA8F7C30025E354 /* HistoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF56CFF1EA8F7C30025E354 /* HistoryDataSource.swift */; };
 		AFFD63DA1EA77B88009340ED /* NewsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFD63D91EA77B88009340ED /* NewsDataSource.swift */; };
+		B31BE4131EBC71C400DE580A /* jsengine.bundle.js in Resources */ = {isa = PBXBuildFile; fileRef = B31BE4121EBC71C400DE580A /* jsengine.bundle.js */; };
 		B354B5BC1E5C5A06001B38A1 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B354B5BB1E5C5A06001B38A1 /* Engine.swift */; };
 		B354B5BE1E5C5AC8001B38A1 /* WebRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B354B5BD1E5C5AC8001B38A1 /* WebRequest.swift */; };
 		B354B5DE1E5C7096001B38A1 /* WebRequestBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B354B5DD1E5C7096001B38A1 /* WebRequestBridge.m */; };
@@ -1148,20 +1148,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = F84B21BD1A090F8100AAB793;
 			remoteInfo = Client;
-		};
-		AFFFF9F51EAF8DF5007443A7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D30EBB5A1C75503800105AE9 /* KIF.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = FAB89FFC1CAC546900C6DFC1;
-			remoteInfo = KIFFrameworkConsumer;
-		};
-		AFFFF9F71EAF8DF5007443A7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D30EBB5A1C75503800105AE9 /* KIF.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = FAB8A0141CAC546A00C6DFC1;
-			remoteInfo = KIFFrameworkConsumerTests;
 		};
 		D30EBB631C75503800105AE9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1868,7 +1854,6 @@
 		4F97573A1AFA6F37006ECC24 /* ReaderViewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReaderViewUITests.swift; sourceTree = "<group>"; };
 		4F9A7B601D6DDAC6005F02CB /* CliqzExtensionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CliqzExtensionViewController.swift; sourceTree = "<group>"; };
 		4F9A7B741D6F2BFA005F02CB /* CliqzURLBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CliqzURLBarView.swift; sourceTree = "<group>"; };
-		4F9CF5E61E8045EF008EEC7C /* jsengine.bundle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jsengine.bundle.js; sourceTree = "<group>"; };
 		4FA29B211D64C0B100C59F5E /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		4FA29B221D64C0B100C59F5E /* TabsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabsViewController.swift; sourceTree = "<group>"; };
 		4FA29B231D64C0B100C59F5E /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
@@ -1987,6 +1972,7 @@
 		AFF56CFD1EA8B52D0025E354 /* CliqzNewsDetailsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CliqzNewsDetailsDataSource.swift; sourceTree = "<group>"; };
 		AFF56CFF1EA8F7C30025E354 /* HistoryDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryDataSource.swift; sourceTree = "<group>"; };
 		AFFD63D91EA77B88009340ED /* NewsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDataSource.swift; sourceTree = "<group>"; };
+		B31BE4121EBC71C400DE580A /* jsengine.bundle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = jsengine.bundle.js; path = JSEngine/jsengine.bundle.js; sourceTree = SOURCE_ROOT; };
 		B354B5BB1E5C5A06001B38A1 /* Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Engine.swift; path = JSEngine/Engine.swift; sourceTree = "<group>"; };
 		B354B5BD1E5C5AC8001B38A1 /* WebRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebRequest.swift; path = JSEngine/WebRequest.swift; sourceTree = "<group>"; };
 		B354B5DD1E5C7096001B38A1 /* WebRequestBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebRequestBridge.m; path = JSEngine/WebRequestBridge.m; sourceTree = "<group>"; };
@@ -3937,7 +3923,7 @@
 		B354B5AD1E5C59C5001B38A1 /* JSEngine */ = {
 			isa = PBXGroup;
 			children = (
-				4F9CF5E61E8045EF008EEC7C /* jsengine.bundle.js */,
+				B31BE4121EBC71C400DE580A /* jsengine.bundle.js */,
 				B354B5BB1E5C5A06001B38A1 /* Engine.swift */,
 				B354B5BD1E5C5AC8001B38A1 /* WebRequest.swift */,
 				B354B5DD1E5C7096001B38A1 /* WebRequestBridge.m */,
@@ -3959,8 +3945,6 @@
 				D30EBB661C75503800105AE9 /* Test Host.app */,
 				D30EBB681C75503800105AE9 /* KIF Tests - XCTest.xctest */,
 				D30EBB6A1C75503800105AE9 /* KIF.framework */,
-				AFFFF9F61EAF8DF5007443A7 /* KIFFrameworkConsumer.app */,
-				AFFFF9F81EAF8DF5007443A7 /* KIFFrameworkConsumerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -5432,20 +5416,6 @@
 			remoteRef = 7B9A62E81C4002B1005C83DC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		AFFFF9F61EAF8DF5007443A7 /* KIFFrameworkConsumer.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = KIFFrameworkConsumer.app;
-			remoteRef = AFFFF9F51EAF8DF5007443A7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		AFFFF9F81EAF8DF5007443A7 /* KIFFrameworkConsumerTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = KIFFrameworkConsumerTests.xctest;
-			remoteRef = AFFFF9F71EAF8DF5007443A7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		D30EBB641C75503800105AE9 /* libKIF.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -5698,7 +5668,7 @@
 				1E79DDD81D507D26006BEB4A /* SendTo.strings in Resources */,
 				1E79DDCC1D507D26006BEB4A /* ErrorPages.strings in Resources */,
 				1E79DDCD1D507D26006BEB4A /* FindInPage.strings in Resources */,
-				4F9CF5E71E8045EF008EEC7C /* jsengine.bundle.js in Resources */,
+				B31BE4131EBC71C400DE580A /* jsengine.bundle.js in Resources */,
 				1E79DDD01D507D26006BEB4A /* Intro.strings in Resources */,
 				A91528D21D0E637600CD0425 /* NoImageModeHelper.js in Resources */,
 				0BA1E00E1B03FB0B007675AF /* NetError.html in Resources */,
