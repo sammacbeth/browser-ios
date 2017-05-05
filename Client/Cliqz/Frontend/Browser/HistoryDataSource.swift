@@ -132,7 +132,7 @@ final class HistoryDataSource: NSObject, HistoryProtocol {
         if indexWithinBounds(indexPath){
             let domainDict = domain(at: indexPath)
             if let timeinterval = domainDict[key] as? NSNumber {
-                return NSDate(timeIntervalSince1970: timeinterval.doubleValue / 1000).toRelativeTimeString()
+                return NSDate(timeIntervalSince1970: timeinterval.doubleValue / 1000000).toRelativeTimeString()
             }
             return domainDict[key] as? String
         }

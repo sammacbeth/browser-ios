@@ -57,7 +57,7 @@ class CliqzHistoryDetailsDataSource: HistoryDetailsProtocol{
         if indexWithinBounds(indexPath){
             if let vis = visit(at: indexPath){
                 if let timeinterval = vis[key] as? NSNumber{
-                    return NSDate(timeIntervalSince1970: timeinterval.doubleValue / 1000).toRelativeTimeString()
+                    return NSDate(timeIntervalSince1970: timeinterval.doubleValue / 1000000).toRelativeTimeString()
                 }
                 return (vis[key] as? String) ?? ""
             }
