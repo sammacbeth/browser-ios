@@ -60,9 +60,9 @@ class AdblockingModule: NSObject {
     }
     
     
-    func getAdBlockingStatistics(url: NSURL) -> [(String, Int)] {
+    func getAdBlockingStatistics(tabId: Int) -> [(String, Int)] {
         var adblockingStatistics = [(String, Int)]()
-        if let urlString = url.absoluteString, tabBlockInfo = getAdBlockingInfo(urlString) {
+        if let tabBlockInfo = getAdBlockingInfo(tabId) {
             if let adDict = tabBlockInfo["advertisersList"]{
                 if let dict = adDict as? Dictionary<String, Array<String>>{
                     dict.keys.forEach({company in
@@ -75,8 +75,8 @@ class AdblockingModule: NSObject {
     }
 
     //MARK: - Private Helpers
-    func getAdBlockingInfo(url: String) -> [NSObject : AnyObject]! {
-        let response = Engine.sharedInstance.getBridge().callAction("adblocker:getAdBlockInfo", args: [url])    
+    func getAdBlockingInfo(tabId: Int) -> [NSObject : AnyObject]! {
+        let response = Engine.sharedInstance.getBridge().callAction("adblocker:getAdBlockInfo2", args: [tabId])
         if let result = response["result"] {
             return result as? Dictionary
         } else {

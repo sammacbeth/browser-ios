@@ -96,7 +96,7 @@ class AdBlockerPanel: AntitrackingPanel {
     }
     
     override func updateTrackers() {
-        trackersList = AdblockingModule.sharedInstance.getAdBlockingStatistics(self.currentURL)
+        trackersList = AdblockingModule.sharedInstance.getAdBlockingStatistics(trackedWebViewID)
         trackersCount = trackersList.reduce(0){$0 + $1.1}
     }
     
