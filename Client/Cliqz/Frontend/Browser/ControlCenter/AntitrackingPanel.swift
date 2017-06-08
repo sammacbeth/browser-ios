@@ -11,7 +11,7 @@ import Shared
 
 class AntitrackingPanel: ControlCenterPanel {
     //MARK: - Constants
-    private static let trackerInfoURL = "https://cliqz.com/whycliqz/anti-tracking/tracker#"
+    private static let trackerInfoURL = "https://apps.ghostery.com/apps/"
     private let trackerCellIdentifier = "TabCell"
     
     //MARK: - Instance variables
@@ -651,7 +651,7 @@ extension AntitrackingPanel: UITableViewDataSource, UITableViewDelegate {
 
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		let item = self.trackersList[indexPath.row]
-		let tracker = item.0.stringByReplacingOccurrencesOfString(" ", withString: "-")
+		let tracker = item.0.stringByReplacingOccurrencesOfString(" ", withString: "_").lowercaseString
 		let url = NSURL(string: AntitrackingPanel.trackerInfoURL.stringByAppendingString(tracker))
 		if let u = url {
             logTelemetrySignal("click", target: "info_company", customData: ["index": indexPath.row])
